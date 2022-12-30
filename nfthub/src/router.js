@@ -6,6 +6,7 @@ import {
 import QuickStart from "./components/QuickStart/QuickStart"
 import MintNft from "./components/MintNft/MintNft"
 import MarketPlace from "./components/MarketPlace/MarketPlace"
+import Wallet from "./components/Wallet/Wallet";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/marketplace",
     element: <MarketPlace/>,
+  },
+  {
+    path:"/wallet",
+    element:<Wallet/>,
   },
 ]);
 
