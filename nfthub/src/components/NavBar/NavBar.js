@@ -23,7 +23,7 @@ const NavBar = (props) => {
                   <a className="nav-link" href="/mint">🎨 Mint NFT</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#link">🖼️ NFT Collection</a>
+                  <a className="nav-link" href="/marketplace">🖼️ NFT Marketplace</a>
                 </li>
                 <li className="nav-item dropdown">
                   <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#link" role="button" aria-haspopup="true" aria-expanded="false">More 🤟🏼</a>
