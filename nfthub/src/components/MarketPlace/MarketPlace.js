@@ -7,7 +7,7 @@ import $ from 'jquery';
 const MarketPlace = (props) => {
   var cards = [];
   for(var i=0;i<15;i++){
-    cards[i] = <div class="card m-auto mt-1 cardNft col-4">
+    cards[i] = <div class="card m-auto mt-2 cardNft col-4">
   <img src="http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/alien_2_2.png" class="card-img-top" alt="..." />
       <span class="d-flex badge badge-pill badge-primary">Soul Bound NFT</span>
   <div class="card-body">
@@ -31,7 +31,7 @@ const MarketPlace = (props) => {
         <h1>MARKETPLACE</h1>
       </div>
       <div class="mt-3">
-          <div class="form-group">
+          <div class="form-group mb-2">
                 <select class="nftTypeSelect" id="nftType" onMouseOver={changeBackground} data-placeholder="Choose&hellip;">
                   <option value="default" defaultValue>Select NFT Type</option>
                   <option value="imagenft">Image</option>
@@ -48,7 +48,7 @@ const MarketPlace = (props) => {
 
       {/*Actual MarketPlace*/}
 
-      <div className="mt-2 d-flex row">
+      <div className="d-flex row">
         {cards}
       </div>
     </div>
