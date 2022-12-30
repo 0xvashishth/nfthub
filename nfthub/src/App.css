@@ -1,0 +1,13 @@
+html{
+  background:url('../public/assets/background-sober.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+/*   filter: blur(8px); */
+/*   -webkit-filter: blur(8px); */
+}
+
+.App{
+  background: none;
+}

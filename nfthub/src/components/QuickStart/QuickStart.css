@@ -1,0 +1,76 @@
+.quickContentLeft{
+/*   height: 50vh; */
+/*   background-position: left; */
+  background-color:lightgray;
+  background:transparent;
+/*   backdrop-filter: blur(7px) */
+}
+/* style="margin-top: 10px; box-shadow: rgba(189, 197, 209, 0.2) 0px 0.5rem 1.2rem; border: 1px solid rgb(231, 234, 243); border-radius: 0.5rem; max-width: 40%;" */
+.quickContentRight{
+/*   height: 50vh; */
+}
+
+.imgleft{
+  height:35vh;
+  width:100%;
+/*   transition: all .9s ease-in-out;  */
+}
+
+.nfthubtitle{
+  font-weight: bold;
+  font-size:15px;
+}
+.contentRight{
+/*   font-size: 2.4vh; */
+}
+
+/* .imgleft{
+transition: 1s ease;
+}
+
+.imgleft:hover{
+-webkit-transform: rotateZ(10deg);
+-ms-transform: rotateZ(10deg);
+transform: rotateZ(10deg);
+transition: 1s ease;
+} */
+
+/* .grow { transition: all .2s ease-in-out; } */
+/* .imgleft:hover { transform: scale(1.1); } */
+
+
+.centerimg {
+  display: flex; 
+  justify-content: center;
+   align-items: center;
+  background: transparent;
+}
+
+/* Media Queries  */
+/* 
+@media only screen and (max-width: 998px) {
+  .contentRight {
+    font-size: 2vh;
+  }
+}
+@media only screen and (max-width: 396px) {
+  .quickContentRight {
+    height:60vh;
+  }
+}
+@media only screen and (max-width: 310px) {
+  .quickContentRight {
+    height:70vh;
+  }
+} */
+
+/* @media only screen and (max-width: 600px) {
+  .contentRight {
+    height:90vh;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .contentRight {
+    height:100vh;
+  }
+} */
