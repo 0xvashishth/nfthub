@@ -6,7 +6,7 @@ function Wallet() {
     <div class="container mt-4 middle">
       
       <div className="border border-white rounded p-4" style={{width:"40rem"}}>
-        <h1>Hello</h1>
+        <h1>Wallet</h1>
           <hr/>
           <form>
             <div class="form-group">
@@ -36,7 +36,18 @@ function Wallet() {
                 aria-describedby="emailHelp"
                 placeholder="Enter the amount"
               />
+            </div>
 
+            <div class="form-group">
+                <label for="assets" class="form-label mt-4">Assets</label>
+                <select class="form-select" id="assets">
+                  <option selected disabled>Choose...</option>
+                  <option value="soul">Polygon Matic</option>
+                  <option value="simple">Ethereum</option>
+                </select>
+            </div>
+            <div class="d-flex justify-content-around">
+              <button type="submit" id="transfer" class="btn btn-outline-light mt-4">Transfer</button>
             </div>
           </form>
       </div>

@@ -1,36 +1,45 @@
-.nftTypeSelect{
-  opacity:0.3;
-  width:100px;
-  height:30px;
-  border-radius:5px;
+.nftTypeSelect {
+  opacity: 0.3;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
 }
-.cardNft{
+
+.cardNft {
   width: 15rem;
   background: linear-gradient(to right, #201e2b, #3e1f24);
 }
 
-.card-img-top{
-  height:200px;
+.card-text {
+  font-size: 14px;
 }
 
-.cardNft{
-  margin:10px;
+.card-img-top {
+  height: 200px;
+}
+
+.cardNft {
+  margin: 10px;
 }
 
 @media only screen and (max-width: 768px) {
-   .card-text{
-    font-size:10px;
+  .card-text {
+    font-size: 10px;
   }
-  .card-title{
-    font-size:15px;
+
+  .card-title {
+    font-size: 15px;
   }
-  .cardNft{
-  width: 10rem;
-}
-  .btncheck{
-    font-size:10px;
+
+  .cardNft {
+    width: 10rem;
   }
-  .card-img-top{
-  height:100px;
-}
+
+  .btncheck {
+    font-size: 10px;
+  }
+
+  .card-img-top {
+    height: 100px;
+  }
 }
