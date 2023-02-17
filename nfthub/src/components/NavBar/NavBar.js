@@ -51,6 +51,7 @@ const NavBar = (props) => {
                   <a className="dropdown-item" href="#link">💸 Transfers</a>
                   <div className="dropdown-divider"></div>
                   <a className="dropdown-item" href="/wallet">👛 Wallet</a>
+                  <a className="dropdown-item" href="/explorer">🪐 Explorer</a>
                 </div>
               </li>
             </ul>
