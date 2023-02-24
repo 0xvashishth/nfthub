@@ -1,6 +1,7 @@
 import './NavBar.css';
 // import Web3 from 'web3';
-import { useEffect } from 'react';
+import $ from 'jquery';
+import { useEffect, useState } from 'react';
 
 const NavBar = (props) => {
   // async function loadWeb3() {
@@ -17,8 +18,15 @@ const NavBar = (props) => {
   //     window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
   //   }
   // }
+  const [connectEmoji, setconnectEmoji] = useState("🔌 Connect");
+  
   if(window.ethereum){
-      // Do something 
+      window.ethereum.request({method:'eth_requestAccounts'})
+.then(res=>{
+        // Return the address of the wallet
+  setconnectEmoji(res[0]);
+        console.log(res) 
+})
     }else{
       alert("install metamask extension!!")
     }
@@ -62,7 +70,7 @@ const NavBar = (props) => {
             </ul>
             <ul className="navbar-nav">
               <li className='nav-item'>
-                <a className='nav-link' href="" >🔌 Connect</a>
+                <a className='nav-link connectEmoji' href="" >{connectEmoji}</a>
               </li>
             </ul>
           </div>
