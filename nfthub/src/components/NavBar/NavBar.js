@@ -64,7 +64,7 @@ const NavBar = (props) => {
                   <div className="dropdown-divider"></div>
                   <a className="dropdown-item" href="/wallet">👛 Wallet</a>
                   <a className="dropdown-item" href="/explorer">🪐 Explorer</a>
-                  <a className="dropdown-item" href="https://blockexplorer.vashishthchaudhary.repl.co/" target="_blank">Block Explorer</a>
+                  <a className="dropdown-item" href="https://blockexplorer.vashishthchaudhary.repl.co/" target="_blank">🚀Block Explorer</a>
                 </div>
               </li>
             </ul>

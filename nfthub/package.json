@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "alchemy-sdk": "^2.4.3",
     "emoji-picker-react": "^4.4.7",
     "jquery": "^3.6.3",
     "react": "^18.2.0",
