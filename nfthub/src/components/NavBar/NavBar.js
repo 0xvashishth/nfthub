@@ -1,6 +1,6 @@
 import './NavBar.css';
 // import Web3 from 'web3';
-import $ from 'jquery';
+// import $ from 'jquery';
 import { useEffect, useState } from 'react';
 
 const NavBar = (props) => {
@@ -63,7 +63,7 @@ const NavBar = (props) => {
                   <a className="dropdown-item" href="#link">💸 Transfers</a>
                   <div className="dropdown-divider"></div>
                   <a className="dropdown-item" href="/wallet">👛 Wallet</a>
-                  <a className="dropdown-item" href="/explorer">🪐 Explorer</a>
+{/*                   <a className="dropdown-item" href="/explorer">🪐 Explorer</a> */}
                   <a className="dropdown-item" href="https://blockexplorer.vashishthchaudhary.repl.co/" target="_blank">🚀Block Explorer</a>
                 </div>
               </li>
