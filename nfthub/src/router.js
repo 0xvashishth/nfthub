@@ -7,8 +7,10 @@ import MintNft from "./components/MintNft/MintNft"
 import MarketPlace from "./components/MarketPlace/MarketPlace"
 import Wallet from "./components/Wallet/Wallet";
 // import Explorer from "./components/Explorer/Explorer";
-import Test from "./components/Test/Test";
-import Tests from "./components/Test/Tests";
+// import Test from "./components/Test/Test";
+// import Tests from "./components/Test/Tests";
+import FindBlock from "./components/Explorer/findBlock";
+import InitialBlocksTransactions from "./components/Explorer/InitialBlocksTransactions";
 
 
 const router = createBrowserRouter([
@@ -28,20 +30,14 @@ const router = createBrowserRouter([
     path:"/wallet",
     element:<Wallet/>,
   },
-  // {
-  //   path:"/explorer",
-  //   element:<Explorer/>,
-  //   children:[
-  //     {
-  //       path:"",
-  //       element:<Test/>
-  //     },
-  //     {
-  //       path:"test",
-  //       element:<Tests/>
-  //     },
-  //   ]
-  // },
+  {
+    path: "/explorer",
+    element: <InitialBlocksTransactions/>,
+  },
+  {
+    path: "/explorer/block",
+    element: <FindBlock/>,
+  }
 ]);
 
 
