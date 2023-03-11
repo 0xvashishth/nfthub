@@ -2,7 +2,7 @@ import "./explorer.css";
 import React from "react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import alchemy from "./settings";
+import {alchemyMumbai} from "../../configuration/settings";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   solid,
@@ -64,7 +64,7 @@ function FindBlock() {
     async function getBlock() {
       var blockObj = dumpObj;
       console.log(blockNumber);
-      await alchemy.core
+      await alchemyMumbai.core
         .getBlock(blockNumber, true)
         .then(function (result) {
           blockObj.parentHash = result.parentHash;
@@ -118,6 +118,9 @@ function FindBlock() {
   return (
     <div className="">
         <div className='row container mt-4'>
+        <div className='m-1'>
+          On Mumbai Matic 🗼
+        </div>
         <div className="col-sm-2 col-4">
           <select className='form-control'>
             <option value="blockNumber">Block Number</option>
@@ -135,7 +138,7 @@ function FindBlock() {
         </div>
         <div className="row m-3">
           <div className="border border-light rounded">
-            <table class="table table-hover">
+            <table className="table table-hover">
               <tbody>
                 <tr className="align-left">
                   <td scope="col">Block Number</td>

@@ -1,7 +1,7 @@
 import './explorer.css'
 import React from 'react';
 import { useEffect, useState } from 'react';
-import alchemy from './settings'
+import {alchemyMumbai as alchemy} from "../../configuration/settings";
 import $ from 'jquery';
 
 function InitialBlocksTransactions() {
@@ -55,12 +55,12 @@ function InitialBlocksTransactions() {
             txValue = txValue.slice(2);
             txValue = hexToDecimal(txValue);
 
-            transaction_details[i] = <tr class="table-active">
+            transaction_details[i] = <tr className="table-active">
             <td>
               <p>
                 Hash <a href="#link">{(result.hash).slice(0,8)}</a>
                 <br />
-                <small class="form-text text-muted">{time}</small>
+                <small className="form-text text-muted">{time}</small>
               </p>
             </td>
             <td>
@@ -68,7 +68,7 @@ function InitialBlocksTransactions() {
                 <br />
                 <small><a href="#link">To: {transactions[i].to}</a></small>
                 <br/>
-                <small class="form-text text-muted">Transaction value: {txValue/1000000000} Gwei</small>
+                <small className="form-text text-muted">Transaction value: {txValue/1000000000} Gwei</small>
             </td>
           </tr>
         }
@@ -88,20 +88,20 @@ function InitialBlocksTransactions() {
         // console.log("From web3", web3.getBlockInformation(result.number));
         // console.log(new Date(timestamp).toLocaleTimeString());
         var blockLink = "/explorer/block?bk=" + result.number
-        block_details[i] = <tr class="table-active">
+        block_details[i] = <tr className="table-active">
           <td>
             <p>
               Block <a href={blockLink}>{result.number}</a>
               <br />
-              <small class="form-text text-muted">{time}</small>
+              <small className="form-text text-muted">{time}</small>
             </p>
           </td>
           <td>
               <small><a href="#link">{result.miner}</a></small>
               <br />
-              <small class="form-text text-muted">Gas Used 🔥: {strgas/1000000000} Gwei</small>
+              <small className="form-text text-muted">Gas Used 🔥: {strgas/1000000000} Gwei</small>
               <br />
-              <small class="form-text text-muted">Total Transactions: {result.transactions.length}</small>
+              <small className="form-text text-muted">Total Transactions: {result.transactions.length}</small>
           </td>
         </tr>
         // setBlockInfo(result);
@@ -132,6 +132,9 @@ function InitialBlocksTransactions() {
   return (
     <div className=''>
       <div className='row container mt-4'>
+        <div className='m-1'>
+          On Mumbai Matic 🗼
+        </div>
         <div className="col-sm-2 col-4">
           <select className='form-control'>
             <option value="blockNumber">Block Number</option>
@@ -154,7 +157,7 @@ function InitialBlocksTransactions() {
         </div>
         <div className="row m-3">
           <div className="col-md-6 border border-light rounded">
-            <table class="table table-hover">
+            <table className="table table-hover">
               <thead>
                 <tr>
                   <th scope="col">Latest Blocks</th>
@@ -167,7 +170,7 @@ function InitialBlocksTransactions() {
             </table>
           </div>
           <div className="col-md-6 border border-light rounded">
-            <table class="table table-hover">
+            <table className="table table-hover">
               <thead>
                 <tr>
                   <th scope="col">Latest-Transactions</th>

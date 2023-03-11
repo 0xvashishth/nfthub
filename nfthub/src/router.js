@@ -11,7 +11,7 @@ import Wallet from "./components/Wallet/Wallet";
 // import Tests from "./components/Test/Tests";
 import FindBlock from "./components/Explorer/findBlock";
 import InitialBlocksTransactions from "./components/Explorer/InitialBlocksTransactions";
-
+import Erc20Indexer from "./components/ERC-20Indexer/erc-20Indexer";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/explorer/block",
     element: <FindBlock/>,
+  },
+  {
+    path: "/erc20indexer",
+    element: <Erc20Indexer/>,
   }
 ]);
 

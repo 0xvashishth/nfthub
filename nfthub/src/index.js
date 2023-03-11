@@ -8,9 +8,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // const footer = document.getElementById("footer");
 
 root.render(
-  <React.StrictMode>
     <App />
-  </React.StrictMode>
 );
 
 // ReactDOM.render(

@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-
+/nfthub/.env
 package.json
 package-lock.json
 
@@ -24,3 +24,4 @@ package-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.env
