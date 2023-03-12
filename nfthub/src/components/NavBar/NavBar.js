@@ -2,18 +2,17 @@ import "./NavBar.css";
 import { setChain } from "../../configuration/settings";
 import { useEffect, useState } from "react";
 import $ from "jquery";
+import { setAccount } from "../../configuration/settings";
+import { truncAddr } from "../../configuration/misc";
 
 const NavBar = (props) => {
-  function truncAddr(text) {
-    return `${text.substr(0, 6)}...`;
-  }
 
   const [connectEmoji, setconnectEmoji] = useState("🔌 Connect");
 
   useEffect(() => {
     if (window.ethereum) {
       window.ethereum.request({ method: "eth_requestAccounts" }).then((res) => {
-        // Return the address of the wallet
+        setAccount(res[0]);
         setconnectEmoji(truncAddr(res[0]));
         console.log(res);
       });
@@ -74,7 +73,7 @@ const NavBar = (props) => {
                   <a className="dropdown-item" href="#link">
                     🏦 Dex
                   </a>
-                  <a className="dropdown-item" href="#link">
+                  <a className="dropdown-item" href="/transfers">
                     💸 Transfers
                   </a>
                   <div className="dropdown-divider"></div>

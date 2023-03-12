@@ -12,4 +12,13 @@ const Loader = () => {
     />
   );
 };
-export default Loader;
+
+const CenterLoader = () => {
+  return (
+    <div className="d-flex justify-content-center">
+      <Loader/>
+    </div>
+  );
+};
+
+export {Loader, CenterLoader};

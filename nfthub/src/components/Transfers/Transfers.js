@@ -1,104 +1,90 @@
-import { useState } from "react";
-import Loader from "../Loader/LoaderDNA";
+import { useState, useEffect } from "react";
 import { alchemyMumbai as alchemy } from "../../configuration/settings";
+import { useGlobalState } from "../../configuration/settings";
+import { trunc } from "../../configuration/misc";
+import { CenterLoader as Loader } from "../Loader/LoaderDNA";
 
 export default function NftIndexer() {
+  const [currentChain] = useGlobalState("globalChain");
+  const [alchemy] = useGlobalState("globalAlchemyInstance");
   const [userAddress, setUserAddress] = useState("");
-  const [nftdata, setnftdata] = useState("");
-  const [nftnftcount, setnftnftcount] = useState("");
+  const [assetType, setAssetType] = useState("erc20");
+  const [ercTransferData, setercTransferData] = useState([]);
+  const [ercTransferCount, setercTransferCount] = useState("");
   const [loader, setloader] = useState("");
+  const [hasQueried, setHasQueried] = useState(false);
 
-  function trunc(text) {
-    return text.length > 10 ? `${text.substr(0, 10)}...` : text;
-  }
+  useEffect(() => {
+    setUserAddress("");
+    setercTransferData([]);
+    setercTransferCount("");
+    setloader("");
+    setHasQueried(false)
+  }, [alchemy]);
 
   async function getTokenBalance() {
-    setnftnftcount("");
-    setloader(
-      <div className="d-flex justify-content-center">
-        <Loader></Loader>
-      </div>
-    );
-    setnftdata("");
+    setercTransferCount("");
+    setloader(<Loader />);
+    setercTransferData("");
+    setHasQueried(false)
 
     // new approach
-    const data = await alchemy.nft.getNftsForOwner(userAddress);
-    // console.log("see here", data);
+    // const data = await alchemy.nft.getNftsForOwner(userAddress);
+    // erc-721 token transfers
+    const ercTransfers = await alchemy.core.getAssetTransfers({
+      fromAddress: userAddress,
+      category: [assetType],
+    });
 
-    const nftArray = [];
-    for (let i = 0; i < data.ownedNfts.length; i++) {
-      const tokenData = await alchemy.nft.getNftMetadata(
-        data.ownedNfts[i].contract.address,
-        data.ownedNfts[i].tokenId
-      );
-      // console.log(tokenData);
-      var tokenaddr = `https://blockscan.com/address/${tokenData.contract.address}`;
-      nftArray[i] = (
-        <div className="col h-100" key={tokenData.tokenId}>
-          <div className="card">
-            <img
-              src={tokenData.media[0].thumbnail}
-              className="card-img-top"
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">{tokenData.title}</h5>
-              <p className="card-text">{tokenData.description}</p>
-            </div>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item">
-                {tokenData.rawMetadata.external_link ? (
-                  <a href={tokenData.rawMetadata.external_link} target="_blank">
-                    External Link
-                  </a>
-                ) : (
-                  "No Link"
-                )}
-              </li>
-              <li className="list-group-item">
-                Token Type{" "}
-                <span className="badge bg-light">{tokenData.tokenType}</span>
-              </li>
-              {tokenData.rawMetadata.traits?.map((e, i) => {
-                return (
-                  <li className="list-group-item" key={i}>
-                    {" "}
-                    {e.trait_type} &nbsp;{" "}
-                    <span className="badge bg-light">{e.value}</span>{" "}
-                  </li>
-                );
-              })}
-              <li className="list-group-item">
-                <a href={tokenaddr} target="_blank">{tokenData.contract.name}</a>
-              </li>
-              <li className="list-group-item">
-                Block No {" "} <span className="badge bg-light">{tokenData.contract.deployedBlockNumber}</span>
-              </li>
-            </ul>
-            <div className="card-footer text-muted">
-              <small>
-                Updated Time:{" "}
-                {new Date(Date.parse(tokenData.timeLastUpdated)).toDateString()}
-              </small>
-            </div>
-          </div>
-        </div>
-      );
-    }
+    console.log(ercTransfers.transfers);
+    setercTransferCount(ercTransfers.transfers.length)
+    setercTransferData(ercTransfers.transfers)
+    // // console.log("see here", data);
 
-    setnftdata(nftArray);
+    // const ercArray = [];
+    // for (let i = 0; i < data.ownedNfts.length; i++) {
+    //   // const tokenData = await alchemy.nft.getNftMetadata(
+    //   //   data.ownedNfts[i].contract.address,
+    //   //   data.ownedNfts[i].tokenId
+    //   // );
+    //   // var tokenaddr = `https://blockscan.com/address/${tokenData.contract.address}`;
+    //   // ercArray[i] = (
+    //   // );
+    // }
+
+    // setercTransferData(ercArray);
     setloader();
+    setHasQueried(true)
   }
 
   return (
     <>
-      <div className="container mt-4 middle">
+      <div className=" mt-4 middle">
         <div
           className="border border-white rounded p-4"
           style={{ width: "40rem" }}
         >
-          <h1>Transfers</h1>
-          <div className="m-1">On Mumbai Matic 🗼</div>
+          <h3 className="justify-content-center text-center">Transfers</h3>
+          <div className="row">
+            <div className="col-6">
+              <span className="m-1 text-muted d-flex">
+                On {currentChain} 🗼
+              </span>
+            </div>
+            <div className="col-6">
+              <select
+                className="m-1 form-select d-flex"
+                id="assetSelect"
+                onChange={(e) => setAssetType(e.target.value)}
+                value={assetType}
+              >
+                <option value="erc20">erc20</option>
+                <option value="erc721">erc721</option>
+                <option value="erc1155">erc1155</option>
+                <option value="specialnft">specialnft</option>
+              </select>
+            </div>
+          </div>
           <hr />
           <div className="form-group">
             <label htmlFor="walletAddress" className="form-label">
@@ -129,6 +115,39 @@ export default function NftIndexer() {
             </button>
           </div>
         </div>
+      </div>
+      {loader}
+      <div className="middle">
+      {hasQueried ? (
+          <div className="mt-3 container">
+          <table className="table caption-top table-responsive table-bordered table-hover border-primary align-middle">
+            <caption>Total Transactions Of {assetType} {" : "} {ercTransferCount}</caption>
+            <thead>
+              <tr>
+                <th scope="col">Block No</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Hash</th>
+              </tr>
+            </thead>
+            <tbody className="table-group-divider">
+            {ercTransferData.map((e, i) => {
+              console.log(e)
+              return (
+                <tr key={i}>
+                <th scope="row">{e.blockNum}</th>
+                <td>{e.from}</td>
+                <td>{e.to}</td>
+                <td>{trunc(e.hash)}</td>
+              </tr>
+              );
+            })}
+          </tbody>
+          </table>
+        </div>
+        ) : (
+          ''
+        )}
       </div>
     </>
   );

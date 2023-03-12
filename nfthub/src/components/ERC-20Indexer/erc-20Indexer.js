@@ -1,9 +1,9 @@
 import "./erc-20Indexer.css";
 import { Utils } from "alchemy-sdk";
 import { useEffect, useState } from "react";
-import Loader from "../Loader/LoaderDNA";
-// import { alchemyMumbai as alchemy } from "../../configuration/settings";
+import {CenterLoader as Loader} from "../Loader/LoaderDNA";
 import { useGlobalState } from "../../configuration/settings";
+import { trunc } from "../../configuration/misc";
 
 export default function Erc20Indexer() {
   const [alchemy] = useGlobalState("globalAlchemyInstance");
@@ -13,10 +13,6 @@ export default function Erc20Indexer() {
   const [erc20transfers, seterc20transfers] = useState("");
   const [erc20transferscount, seterc20transferscount] = useState("");
   const [loader, setloader] = useState("");
-
-  function trunc(text) {
-    return text.length > 10 ? `${text.substr(0, 10)}...` : text;
-  }
 
   useEffect(()=>{
     setUserAddress("");
@@ -29,11 +25,7 @@ export default function Erc20Indexer() {
   async function getTokenBalance() {
     seterc20transfers("");
     seterc20transferscount("");
-    setloader(
-      <div className="d-flex justify-content-center">
-        <Loader></Loader>
-      </div>
-    );
+    setloader(<Loader/>);
     seterc20data("");
 
     // just transfer data of erc-20
@@ -95,8 +87,8 @@ export default function Erc20Indexer() {
           className="border border-white rounded p-4"
           style={{ width: "40rem" }}
         >
-          <h1>ERC-20 Indexer</h1>
-          <div className="m-1">On {currentChain} 🗼</div>
+          <h3 className="justify-content-center text-center">ERC-20 Indexer</h3>
+          <span className="m-1 text-muted d-flex">On {currentChain} 🗼</span>
           <hr />
           <div className="form-group">
             <label htmlFor="walletAddress" className="form-label">

@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import Loader from "../Loader/LoaderDNA";
+import {CenterLoader as Loader} from "../Loader/LoaderDNA";
 import { useGlobalState } from "../../configuration/settings";
 
 export default function NftIndexer() {
   const [alchemy] = useGlobalState("globalAlchemyInstance");
+  const [currentChain] = useGlobalState("globalChain");
   const [userAddress, setUserAddress] = useState("");
   const [nftdata, setnftdata] = useState("");
   const [nftnftcount, setnftnftcount] = useState("");
@@ -16,17 +17,9 @@ export default function NftIndexer() {
     setloader("");
   }, [alchemy])
 
-  function trunc(text) {
-    return text.length > 10 ? `${text.substr(0, 10)}...` : text;
-  }
-
   async function getTokenBalance() {
     setnftnftcount("");
-    setloader(
-      <div className="d-flex justify-content-center">
-        <Loader></Loader>
-      </div>
-    );
+    setloader(<Loader/>);
     setnftdata("");
 
     // new approach
@@ -56,7 +49,7 @@ export default function NftIndexer() {
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
                 {tokenData.rawMetadata.external_link ? (
-                  <a href={tokenData.rawMetadata.external_link} target="_blank">
+                  <a href={tokenData.rawMetadata.external_link} target="_blank" rel="noreferrer">
                     External Link
                   </a>
                 ) : (
@@ -77,7 +70,7 @@ export default function NftIndexer() {
                 );
               })}
               <li className="list-group-item">
-                <a href={tokenaddr} target="_blank">{tokenData.contract.name}</a>
+                <a href={tokenaddr} target="_blank" rel="noreferrer">{tokenData.contract.name}</a>
               </li>
               <li className="list-group-item">
                 Block No {" "} <span className="badge bg-light">{tokenData.contract.deployedBlockNumber}</span>
@@ -105,8 +98,8 @@ export default function NftIndexer() {
           className="border border-white rounded p-4"
           style={{ width: "40rem" }}
         >
-          <h1>NFT Indexer</h1>
-          <div className="m-1">On Mumbai Matic 🗼</div>
+          <h3 className="justify-content-center text-center">NFT Indexer</h3>
+          <span className="m-1 text-muted d-flex">On {currentChain} 🗼</span>
           <hr />
           <div className="form-group">
             <label htmlFor="walletAddress" className="form-label">

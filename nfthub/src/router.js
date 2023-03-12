@@ -13,6 +13,7 @@ import FindBlock from "./components/Explorer/findBlock";
 import InitialBlocksTransactions from "./components/Explorer/InitialBlocksTransactions";
 import Erc20Indexer from "./components/ERC-20Indexer/erc-20Indexer";
 import NftIndexer from "./components/NftIndexer/NftIndexer";
+import Transfers from "./components/Transfers/Transfers"
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "/nftindexer",
     element: <NftIndexer/>
+  },
+  {
+    path: "/transfers",
+    element: <Transfers/>
   }
 ]);
 
