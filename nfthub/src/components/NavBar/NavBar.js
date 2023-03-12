@@ -1,36 +1,34 @@
 import "./NavBar.css";
-// import Web3 from 'web3';
-// import $ from 'jquery';
+import { setChain } from "../../configuration/settings";
 import { useEffect, useState } from "react";
+import $ from "jquery";
 
 const NavBar = (props) => {
-  // async function loadWeb3() {
-  //   if (window.ethereum) {
-  //     window.web3 = new Web3(window.ethereum);
-  //     await window.ethereum.enable();
-  //     console.log("1");
-  //   }
-  //   else if (window.web3) {
-  //     window.web3 = new Web3(window.web3.currentProvider);
-  //     console.log("2");
-  //   }
-  //   else {
-  //     window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
-  //   }
-  // }
+  function truncAddr(text) {
+    return `${text.substr(0, 6)}...`;
+  }
+
   const [connectEmoji, setconnectEmoji] = useState("🔌 Connect");
 
   useEffect(() => {
     if (window.ethereum) {
       window.ethereum.request({ method: "eth_requestAccounts" }).then((res) => {
         // Return the address of the wallet
-        setconnectEmoji(res[0]);
+        setconnectEmoji(truncAddr(res[0]));
         console.log(res);
       });
     } else {
       alert("install metamask extension!!");
     }
+
+    $("#chainSelection").val(localStorage.getItem("globalChain"))
+
   }, []);
+
+  function changeChain(e){
+    console.log(e.target.value)
+    setChain(e.target.value);
+  }
 
   return (
     <div className="m-1" style={{ backgroundColor: "none" }}>
@@ -39,17 +37,6 @@ const NavBar = (props) => {
           <a className="navbar-brand" href="#link">
             📢 NFTHub
           </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarColor03"
-            aria-controls="navbarColor03"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
           <div className="collapse navbar-collapse" id="navbarColor03">
             <ul className="navbar-nav mx-auto">
               {/* <li className="nav-item">
@@ -107,14 +94,35 @@ const NavBar = (props) => {
                 </div>
               </li>
             </ul>
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link connectEmoji" href="">
-                  {connectEmoji}
-                </a>
-              </li>
-            </ul>
           </div>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <select className="form-select me-sm-2" id="chainSelection" onChange={changeChain}>
+                <option value="MATIC_MUMBAI">MATIC_MUMBAI</option>
+                <option value="MATIC_MAINNET">MATIC_MAINNET</option>
+                <option value="ETH_GOERLI">ETH_GOERLI</option>
+                <option value="ETH_MAINNET">ETH_MAINNET</option>
+              </select>
+            </li>
+          </ul>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a className="nav-link connectEmoji" href="">
+                {connectEmoji}
+              </a>
+            </li>
+          </ul>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarColor03"
+            aria-controls="navbarColor03"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
         </div>
       </nav>
     </div>

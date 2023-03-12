@@ -1,20 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Loader from "../Loader/LoaderDNA";
-import { useGlobalState } from "../../configuration/settings";
+import { alchemyMumbai as alchemy } from "../../configuration/settings";
 
 export default function NftIndexer() {
-  const [alchemy] = useGlobalState("globalAlchemyInstance");
   const [userAddress, setUserAddress] = useState("");
   const [nftdata, setnftdata] = useState("");
   const [nftnftcount, setnftnftcount] = useState("");
   const [loader, setloader] = useState("");
-
-  useEffect(()=>{
-    setUserAddress("");
-    setnftdata("");
-    setnftnftcount("");
-    setloader("");
-  }, [alchemy])
 
   function trunc(text) {
     return text.length > 10 ? `${text.substr(0, 10)}...` : text;
@@ -105,7 +97,7 @@ export default function NftIndexer() {
           className="border border-white rounded p-4"
           style={{ width: "40rem" }}
         >
-          <h1>NFT Indexer</h1>
+          <h1>Transfers</h1>
           <div className="m-1">On Mumbai Matic 🗼</div>
           <hr />
           <div className="form-group">
@@ -137,11 +129,6 @@ export default function NftIndexer() {
             </button>
           </div>
         </div>
-      </div>
-      {loader}
-      <div className="d-flex justify-content-center pt-3">{nftnftcount}</div>
-      <div className="row middle container m-3 row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-sm-2">
-        {nftdata}
       </div>
     </>
   );

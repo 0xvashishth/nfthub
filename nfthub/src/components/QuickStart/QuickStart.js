@@ -2,7 +2,9 @@ import React from "react";
 import "./QuickStart.css";
 import character from "./character.png";
 
+
 const QuickStart = (props) => {
+
   return (
     <div className="m-4">
       <div className="m-2">
@@ -15,7 +17,7 @@ const QuickStart = (props) => {
             </div>
             <div className="col-md-6 quickContentRight  border border-white rounded m-3">
               <p className="nfthubtitle mt-3">👀 What is NFTHUB? </p>
-              <hr />
+              <hr/>
               <div className="m-3 contentRight">
                 <b>A multichain Defi Dashboard</b> which allows you to track
                 your assets on multiple chains. It also allows users to create
