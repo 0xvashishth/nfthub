@@ -1,7 +1,7 @@
 import './explorer.css'
 import React from 'react';
 import { useEffect, useState } from 'react';
-import {alchemyMumbai as alchemy} from "../../configuration/settings";
+import {alchemyMatic as alchemy} from "../../configuration/settings";
 import $ from 'jquery';
 
 function InitialBlocksTransactions() {
@@ -40,7 +40,8 @@ function InitialBlocksTransactions() {
   const hexToDecimal = hex => parseInt(hex, 16);
 
   async function getBlockTrancations(blockNumber){
-    await alchemy.core.getBlockWithTransactions(blockNumber).then(function(result) {
+    const transactions = await alchemy.core.getBlockWithTransactions(blockNumber)
+    .then(function(result) {
         var transactions = result.transactions;
         console.log("Transaction Info:", transactions);
         var timestamp = result.timestamp * 1000;
@@ -133,7 +134,7 @@ function InitialBlocksTransactions() {
     <div className=''>
       <div className='row container mt-4'>
         <div className='m-1'>
-          On Mumbai Matic 🗼
+          On Polygon Matic Mainnet 🗼
         </div>
         <div className="col-sm-2 col-4">
           <select className='form-control'>

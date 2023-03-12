@@ -101,6 +101,9 @@ const NavBar = (props) => {
                   <a className="dropdown-item" href="/erc20indexer">
                     📇 Erc20 Token Indexer
                   </a>
+                  <a className="dropdown-item" href="/nftindexer">
+                    🖼 NFT Indexer
+                  </a>
                 </div>
               </li>
             </ul>

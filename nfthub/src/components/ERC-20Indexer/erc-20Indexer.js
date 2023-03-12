@@ -1,5 +1,5 @@
 import "./erc-20Indexer.css";
-import { Alchemy, Network, Utils } from "alchemy-sdk";
+import { Utils } from "alchemy-sdk";
 import { useState } from "react";
 import Loader from "../Loader/LoaderDNA";
 import { alchemyMumbai as alchemy } from "../../configuration/settings";
@@ -7,6 +7,10 @@ import { alchemyMumbai as alchemy } from "../../configuration/settings";
 export default function Erc20Indexer() {
   const [userAddress, setUserAddress] = useState("");
   const [erc20data, seterc20data] = useState("");
+  const [
+    // erc20transfers, 
+    seterc20transfers] = useState("");
+  const [erc20transferscount, seterc20transferscount] = useState("");
   const [loader, setloader] = useState("");
 
   function trunc(text) {
@@ -14,12 +18,25 @@ export default function Erc20Indexer() {
   }
 
   async function getTokenBalance() {
+    seterc20transfers("");
+    seterc20transferscount("")
     setloader(
-      <div className="d-flex justify-content-center pb-3">
+      <div className="d-flex justify-content-center">
         <Loader></Loader>
       </div>
     );
     seterc20data("");
+
+    // just transfer data of erc-20
+    const totalerc20Transfers = await alchemy.core.getAssetTransfers({
+      fromAddress: userAddress,
+      category: ["erc20"]
+  });
+  seterc20transfers(totalerc20Transfers.transfers)
+  seterc20transferscount(<span className="badge bg-dark">Total ERC20 Transfers: <b>{totalerc20Transfers.transfers.length}</b></span>)
+  console.log("Total Transfers", totalerc20Transfers)
+
+  // erc-20 token balances
     const data = await alchemy.core.getTokenBalances(userAddress);
 
     var erc20Array = [];
@@ -99,6 +116,9 @@ export default function Erc20Indexer() {
         </div>
       </div>
       {loader}
+      <div className="d-flex justify-content-center pt-3">
+         {erc20transferscount}
+      </div>
       <div className="row row-cols-1 row-cols-md-3 row-cols-lg-3 row-cols-sm-2">
         {erc20data}
       </div>
