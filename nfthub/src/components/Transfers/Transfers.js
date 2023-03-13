@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { alchemyMumbai as alchemy } from "../../configuration/settings";
 import { useGlobalState } from "../../configuration/settings";
 import { trunc } from "../../configuration/misc";
 import { CenterLoader as Loader } from "../Loader/LoaderDNA";

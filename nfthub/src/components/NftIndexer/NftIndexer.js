@@ -37,11 +37,13 @@ export default function NftIndexer() {
       nftArray[i] = (
         <div className="col h-100" key={tokenData.tokenId}>
           <div className="card">
+            <a href={tokenData.media[0].gateway} target="_blank" rel="noopener">
             <img
               src={tokenData.media[0].thumbnail}
               className="card-img-top"
-              alt="..."
+              alt={tokenData.media[0].gateway}
             />
+            </a>
             <div className="card-body">
               <h5 className="card-title">{tokenData.title}</h5>
               <p className="card-text">{tokenData.description}</p>

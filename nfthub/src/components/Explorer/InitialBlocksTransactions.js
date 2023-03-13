@@ -1,11 +1,12 @@
 import './explorer.css'
 import React from 'react';
 import { useEffect, useState } from 'react';
-import {alchemyMatic as alchemy} from "../../configuration/settings";
+import { useGlobalState } from "../../configuration/settings";
 import $ from 'jquery';
 
 function InitialBlocksTransactions() {
-
+  const [alchemy] = useGlobalState("globalAlchemyInstance");
+  const [currentChain] = useGlobalState("globalChain");
   const loader = <img alt="loaderimg" src="https://user-images.githubusercontent.com/89864614/213781640-e7232dcc-6ff3-45f8-8c5e-e6f8181fb770.gif" width="20px" />
 
   // const [chain, setChain] = useState("main");
@@ -134,7 +135,7 @@ function InitialBlocksTransactions() {
     <div className=''>
       <div className='row container mt-4'>
         <div className='m-1'>
-          On Polygon Matic Mainnet 🗼
+          On {currentChain} 🗼
         </div>
         <div className="col-sm-2 col-4">
           <select className='form-control'>

@@ -2,7 +2,7 @@ import "./explorer.css";
 import React from "react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import {alchemyMumbai} from "../../configuration/settings";
+import { useGlobalState } from "../../configuration/settings";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   solid,
@@ -15,6 +15,8 @@ import $ from 'jquery';
 
 function FindBlock() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [alchemy] = useGlobalState("globalAlchemyInstance");
+  const [currentChain] = useGlobalState("globalChain");
 
   const loader = (
     <img
@@ -64,7 +66,7 @@ function FindBlock() {
     async function getBlock() {
       var blockObj = dumpObj;
       console.log(blockNumber);
-      await alchemyMumbai.core
+      await alchemy.core
         .getBlock(blockNumber, true)
         .then(function (result) {
           blockObj.parentHash = result.parentHash;
@@ -119,7 +121,7 @@ function FindBlock() {
     <div className="">
         <div className='row container mt-4'>
         <div className='m-1'>
-          On Mumbai Matic 🗼
+        On {currentChain} 🗼
         </div>
         <div className="col-sm-2 col-4">
           <select className='form-control'>
