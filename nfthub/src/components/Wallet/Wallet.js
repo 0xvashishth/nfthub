@@ -1,134 +1,196 @@
-import {React, useState, useEffect} from 'react'
-import {ethers} from 'ethers'
-// import {web3} from "web3"
-// import styles from './Wallet.module.css'
-import PirateContractABI from "../../contracts/PirateToken-abi.json"
-import MaticMainnetContractABI from "../../contracts/MaticMainnetToken-abi.json"
-import GoerliContractABI from "../../contracts/GoerliTestnetToken-abi.json"
-import EthMainnetContractABI from "../../contracts/EthMainnetToken-abi.json"
-import Interactions from './Interact';
-// import { truncAddr } from '../../configuration/misc';
-import "./Wallet.css"
-
+import { React, useState, useEffect } from "react";
+import { ethers } from "ethers";
+import PirateContractABI from "../../contracts/PirateToken-abi.json";
+import MaticMainnetContractABI from "../../contracts/MaticMainnetToken-abi.json";
+import GoerliContractABI from "../../contracts/GoerliTestnetToken-abi.json";
+import EthMainnetContractABI from "../../contracts/EthMainnetToken-abi.json";
+import { transact } from "./Interact";
+import { useGlobalState } from "../../configuration/settings";
+import toast, { Toaster } from "react-hot-toast";
+import { chainCheck } from "./chainCheck";
+import "./Wallet.css";
 
 const Wallet = () => {
+  let PirateContractAddress =
+    process.env.REACT_APP_PIRATE_CONTRACT_ADDRESS_MUMBAI;
+  let MaticMainnetContractAddress =
+    process.env.REACT_APP_MATIC_CONTRACT_ADDRESS_MAINNET;
+  let EthMainnetContractAddress =
+    process.env.REACT_APP_ETH_CONTRACT_ADDRESS_MAINNET;
+  let GoerliTestnetContractAddress =
+    process.env.REACT_APP_GOERLI_CONTRACT_ADDRESS;
 
-	// deploy simple token contract and paste deployed contract address here. This value is local ganache chain
-	let PirateContractAddress = process.env.REACT_APP_PIRATE_CONTRACT_ADDRESS_MUMBAI;
-  let MaticMainnetContractAddress = process.env.REACT_APP_MATIC_CONTRACT_ADDRESS_MAINNET;
-  let EthMainnetContractAddress = process.env.REACT_APP_ETH_CONTRACT_ADDRESS_MAINNET;
-  let GoerliTestnetContractAddress= process.env.REACT_APP_GOERLI_CONTRACT_ADDRESS;
+  const [tokenType, settokenType] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [currentAddress, setcurrentAddress] = useState(null);
 
-	const [errorMessage, setErrorMessage] = useState(null);
-	const [tokenType, settokenType] = useState("mmatic");
-	// const [connButtonText, setConnButtonText] = useState('Connect Wallet');
+  const connectWalletHandler = () => {
+    if (window.ethereum && window.ethereum.isMetaMask) {
+      window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then((result) => {
+		      setcurrentAddress(result[0])
+          console.log(currentAddress)
+          accountChangedHandler(result[0]);
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
+    } else {
+      console.log("Need to install MetaMask");
+      toast.error("Please install MetaMask browser extension to interact");
+    }
+  };
 
-	// const [
-  //   // provider, 
-  //   setProvider
-  // ] = useState(null);
-	// const [
-  //   // signer, 
-  //   setSigner] = useState(null);
-	const [contract, setContract] = useState(null);
+  const accountChangedHandler = (newAccount) => {
+    // updateEthers();
+  };
+  const chainChangedHandler = () => {
+    window.location.reload();
+  };
+  window.ethereum.on("accountsChanged", accountChangedHandler);
 
-	// const [tokenName, setTokenName] = useState("Token");
-	// const [balance, setBalance] = useState(null);
-	// const [transferHash, setTransferHash] = useState(null);
+  window.ethereum.on("chainChanged", chainChangedHandler);
 
-
-
-	const connectWalletHandler = () => {
-		if (window.ethereum && window.ethereum.isMetaMask) {
-
-			window.ethereum.request({ method: 'eth_requestAccounts'})
-			.then(result => {
-				accountChangedHandler(result[0]);
-				// setConnButtonText('Wallet Connected');
-			})
-			.catch(error => {
-				setErrorMessage(error.message);
-			
-			});
-
-		} else {
-			console.log('Need to install MetaMask');
-			setErrorMessage('Please install MetaMask browser extension to interact');
-		}
-	}
-
-	const accountChangedHandler = (newAccount) => {
-		// setDefaultAccount(newAccount);
-    console.log("This is called")
-		updateEthers();
-    console.log("Affter this")
-	}
-
-	// const updateBalance = async () => {
-	// 	let balanceBigN = await contract.balanceOf(defaultAccount);
-	// 	let balanceNumber = balanceBigN.toNumber();
-
-	// 	let tokenDecimals = await contract.decimals();
-
-	// 	// let tokenBalance = balanceNumber / Math.pow(10, tokenDecimals);
-
-	// 	// setBalance(ethers.BigNumber.from(tokenBalance));	
-
-
-	// }
-
-	const chainChangedHandler = () => {
-		window.location.reload();
-	}
-
-	// listen for account changes
-	window.ethereum.on('accountsChanged', accountChangedHandler);
-
-	window.ethereum.on('chainChanged', chainChangedHandler);
-
-	const updateEthers = async () => {
-		let tempProvider = new ethers.providers.Web3Provider(window.ethereum);
-		// setProvider(tempProvider);
-    console.log("Updating Ethers")
-		let tempSigner = tempProvider.getSigner();
-		// setSigner(tempSigner);
-
+  const updateEthers = async (e) => {
+    let tempProvider = new ethers.providers.Web3Provider(window.ethereum);
+    console.log("Updating Ethers", e);
+    let tempSigner = tempProvider.getSigner();
     var contractAddress;
     var contractAbi;
-    if(tokenType == "prt"){
-      contractAddress = PirateContractAddress
-      contractAbi = PirateContractABI
-    }else if(tokenType == "mmatic"){
-      contractAddress = MaticMainnetContractAddress
-      contractAbi = MaticMainnetContractABI
-    }else if(tokenType == "geth"){
-      contractAddress = GoerliTestnetContractAddress
-      contractAbi = GoerliContractABI
-    }else if(tokenType == "meth"){
-      contractAddress = EthMainnetContractAddress
-      contractAbi = EthMainnetContractABI
+    if (e === "prt") {
+      contractAddress = PirateContractAddress;
+      contractAbi = PirateContractABI.abi;
+    } else if (e === "mmatic") {
+      contractAddress = MaticMainnetContractAddress;
+      contractAbi = MaticMainnetContractABI;
+    } else if (e === "geth") {
+      contractAddress = GoerliTestnetContractAddress;
+      contractAbi = GoerliContractABI;
+    } else if (e === "meth") {
+      contractAddress = EthMainnetContractAddress;
+      contractAbi = EthMainnetContractABI;
+    } else {
+      toast.success("Please Select Token Type");
     }
+	console.log(contractAddress, contractAbi)
+    let tempContract = new ethers.Contract(
+		contractAddress,
+		contractAbi,
+      	tempSigner
+    );
+    setContract(tempContract);
+  };
 
-		let tempContract = await new ethers.Contract(PirateContractAddress, PirateContractABI.abi, tempSigner);
-		setContract(tempContract);	
+  useEffect(() => {
+    connectWalletHandler();
+  });
+
+  const [currentChain] = useGlobalState("globalChain");
+
+  const transferHandler = async (e) => {
+	if(e == null){
+		toast.error("Please Select asset type");
+		return;
 	}
-  // connectWalletHandler()
-	useEffect(() => {
-		connectWalletHandler()
-	}, []);
+    const toastId = toast.loading("Waiting For Sign Transaction");
+    e.preventDefault();
+    let transferAmount = e.target.sendAmount.value;
+    let recieverAddress = e.target.recieverAddress.value;
+    console.log(recieverAddress, transferAmount);
+    console.log(contract);
+    transact(contract, recieverAddress, transferAmount, toastId, tokenType);
+  };
 
-	const setTokenFunction = (e) => {
-    console.log("Inside Changing the Token Type");
+  async function updateToken(e) {
+    var decision;
+    decision = await chainCheck(e);
+    if (decision === false) {
+      toast.error(
+        "Please change network in order to do transfer in Selected Token"
+      );
+    }else{
 		settokenType(e);
-    updateEthers();
+    	updateEthers(e);
 	}
-	
-	return (
-	<div className="middle d-flex justify-content-center">
-		<Interactions contract={contract} setToken={setTokenFunction} />
-    <small className="text-muted">{errorMessage}</small>
-	</div>
-	)
-}
+  }
+
+  return (
+    <div className="middle d-flex justify-content-center">
+      <div className="container mt-4 middle">
+        <div
+          className="border border-white rounded p-4"
+          style={{ width: "40rem" }}
+        >
+          <h3 className="justify-content-center text-center">Wallet</h3>
+          <span className="m-1 text-muted d-flex">On {currentChain} 🗼</span>
+          <hr />
+          <form onSubmit={transferHandler}>
+            <div className="form-group">
+              <label htmlFor="walletAddress" className="form-label">
+                Address
+              </label>
+              <input
+                type="text"
+                pattern="^0x[a-fA-F0-9]{40}$"
+                className="form-control"
+                id="recieverAddress"
+                aria-describedby="emailHelp"
+                placeholder="Enter wallet address"
+              />
+              <small id="emailHelp" className="form-text text-muted">
+                Enter the reciever's address
+              </small>
+            </div>
+            <div className="form-group">
+              <label htmlFor="amount" className="form-label">
+                Amount
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                id="sendAmount"
+                aria-describedby="emailHelp"
+                placeholder="Enter the amount"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="assets" className="form-label mt-4">
+                Assets
+              </label>
+              <select
+                className="form-select"
+                id="assets"
+                onChange={(e) => {
+                  updateToken(e.target.value);
+                }}
+              >
+                <option defaultValue>--Select Token---</option>
+                <option value="prt">Pirate Token</option>
+                <option value="mumatic" disabled>
+                  Mumbai Matic
+                </option>
+                <option value="mmatic" disabled>Mainnet Matic</option>
+                <option value="geth" disabled>Goerli Ethereum</option>
+                <option value="meth">Mainnet Ethereum</option>
+              </select>
+            </div>
+            <div className="d-flex justify-content-around">
+              <button
+                type="submit"
+                id="transfer"
+                className="btn btn-outline-light mt-4"
+              >
+                Transfer
+              </button>
+            </div>
+          </form>
+        </div>
+        <Toaster position="bottom-center" reverseOrder={false} />
+      </div>
+    </div>
+  );
+};
 
 export default Wallet;
