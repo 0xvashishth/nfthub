@@ -13,7 +13,7 @@ const QuickStart = (props) => {
             <div className="col-md-3 quickContentLeft border border-white rounded m-3">
               <p className="nfthubtitle mt-3">📢 NFTHUB</p>
               <hr />
-              <img className="imgleft centerimg" src={character}></img>
+              <img alt="img" className="imgleft centerimg" src={character}></img>
             </div>
             <div className="col-md-6 quickContentRight  border border-white rounded m-3">
               <p className="nfthubtitle mt-3">👀 What is NFTHUB? </p>

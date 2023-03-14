@@ -70,8 +70,8 @@ const NavBar = (props) => {
                   More 🤟🏼
                 </a>
                 <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#link">
-                    🏦 Dex
+                  <a className="dropdown-item" href="/swap">
+                    🚀 Swap
                   </a>
                   <a className="dropdown-item" href="/transfers">
                     💸 Transfers
@@ -82,7 +82,7 @@ const NavBar = (props) => {
                   </a>
                   {/*                   <a className="dropdown-item" href="/explorer">🪐 Explorer</a> */}
                   <a className="dropdown-item" href="/explorer">
-                    🚀Block Explorer
+                    🪐 Block Explorer
                   </a>
                   <a className="dropdown-item" href="/erc20indexer">
                     📇 Erc20 Token Indexer
@@ -106,7 +106,7 @@ const NavBar = (props) => {
           </ul>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link connectEmoji" href="">
+              <a className="nav-link connectEmoji" href="#connect">
                 {connectEmoji}
               </a>
             </li>

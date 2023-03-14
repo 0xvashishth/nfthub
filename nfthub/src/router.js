@@ -14,6 +14,7 @@ import InitialBlocksTransactions from "./components/Explorer/InitialBlocksTransa
 import Erc20Indexer from "./components/ERC-20Indexer/erc-20Indexer";
 import NftIndexer from "./components/NftIndexer/NftIndexer";
 import Transfers from "./components/Transfers/Transfers"
+import Uniswap from "./components/Uniswap/Uniswap";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
   {
     path: "/transfers",
     element: <Transfers/>
+  },
+  {
+    path: "/swap",
+    element: <Uniswap/>
   }
 ]);
 

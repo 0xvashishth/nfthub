@@ -9,7 +9,7 @@ import { setChain } from "./configuration/settings";
 function App() {
   console.log(localStorage.getItem("globalChain"))
 
-  if(localStorage.getItem("globalChain") == undefined){
+  if(localStorage.getItem("globalChain") === undefined){
     localStorage.setItem("globalChain", "MATIC_MUMBAI");
     setChain("MATIC_MUMBAI");
   }else{
