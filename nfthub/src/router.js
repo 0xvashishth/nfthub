@@ -15,6 +15,7 @@ import Erc20Indexer from "./components/ERC-20Indexer/erc-20Indexer";
 import NftIndexer from "./components/NftIndexer/NftIndexer";
 import Transfers from "./components/Transfers/Transfers"
 import Uniswap from "./components/Uniswap/Uniswap";
+import NFTPage from "./components/MarketPlace/NFTPage";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: "/swap",
     element: <Uniswap/>
+  },
+  {
+    path: "/nftPage/:tokenId",
+    element: <NFTPage/>
   }
 ]);
 

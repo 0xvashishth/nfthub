@@ -1,59 +1,106 @@
-import React from 'react';
-import './MarketPlace.css'
-import $ from 'jquery';
-// import character from './character.png';
+import NFTTile from "./NFTTile";
+import NFTHub from "../../contracts/NFTHub.json";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import {CenterLoader as Loader} from "../Loader/LoaderDNA"
+// import $ from "jquery";
 
+export default function MarketPlace() {
 
-const MarketPlace = (props) => {
-  var cards = [];
-  for(var i=0;i<15;i++){
-    cards[i] = <div className="card m-auto mt-2 cardNft col-4">
-  <img src="http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/alien_2_2.png" className="card-img-top" alt="..." />
-      <span className="d-flex badge badge-pill badge-primary">Soul Bound NFT</span>
-  <div className="card-body">
-    <h5 className="card-title">Pirate NFT</h5>
-    <p className="card-text">Here is the pirate NFT Which is very pixelled and also it's very popular in the World.</p>
-    <a href="#nftLink" className="btn btncheck btn-outline-primary">Check NFT</a>
-  </div>
-</div>
+  // sample data for initial render
+  const sampleData = [
+    {
+      name: "NFT#1",
+      description: "Alchemy's First NFT",
+      website: "http://axieinfinity.io",
+      image:
+        "https://gateway.pinata.cloud/ipfs/QmTsRJX7r5gyubjkdmzFrKQhHv74p5wT9LdeF1m3RTqrE5",
+      price: "0.03ETH",
+      currentlySelling: "True",
+      address: "0xe81Bf5A757CB4f7F82a2F23b1e59bE45c33c5b13",
+    },
+  ];
+
+  const [data, updateData] = useState(sampleData);
+
+  async function getAllNFTs() {
+    // console.log("Inside Get All NFTs");
+    const ethers = require("ethers");
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    let contract = new ethers.Contract(NFTHub.address, NFTHub.abi, signer);
+    let transaction = await contract.getAllNFTs();
+
+    const items = await Promise.all(
+      transaction.map(async (i) => {
+        const tokenURI = await contract.tokenURI(i.tokenId);
+        // console.log("Token uri", tokenURI);
+        let meta = await axios({
+          method: "get",
+          url: tokenURI,
+          headers: {
+            Accept: "text/plain",
+          },
+        });
+        meta = meta.data;
+        // console.log("Meta Data", meta)
+
+        let price = ethers.utils.formatUnits(i.price.toString(), "ether");
+        let item = {
+          price,
+          tokenId: i.tokenId.toNumber(),
+          seller: i.seller,
+          owner: i.owner,
+          image: meta.image,
+          name: meta.name,
+          description: meta.description,
+        };
+        return item;
+      })
+    );
+    updateData(items);
   }
 
+  useEffect(() => {
+    getAllNFTs();
+  }, []);
 
-  function changeBackground(){
-    $(".nftTypeSelect").trigger("click");
-    console.log("Hello")
-  }
-
-  
-  return(
-    <div className="m-2">
-      <div className="pt-4">
-        <h1>MARKETPLACE</h1>
+  return (
+    <div className="">
+      <div className="mt-3 middle">
+        <h3 className="border border-secondary p-3">NFT MarketPlace</h3>
       </div>
-      <div className="mt-3">
-          <div className="form-group mb-2">
-                <select className="nftTypeSelect" id="nftType" onMouseOver={changeBackground} data-placeholder="Choose&hellip;">
-                  <option value="default" defaultValue>Select NFT Type</option>
-                  <option value="imagenft">Image</option>
-                  <option value="videonft">Video</option>
-                  <option value="gifnft">Gif</option>
-                </select>
-            <select className="ms-2 nftTypeSelect" id="nftVersionSelect">
-                  <option value="default" defaultValue>Select NFT Version</option>
-                  <option value="imagenft">Soul Bound NFT</option>
-                  <option value="videonft">Simple NFT</option>
-                </select>
-            </div>
+      <div className="mt-3 d-flex">
+        <select
+          className="form-select"
+          id="nftType"
+          // onMouseOver={changeBackground}
+          data-placeholder="Choose&hellip;"
+        >
+          <option value="default" defaultValue>
+            Select NFT Type
+          </option>
+          <option value="imagenft">Image</option>
+          <option value="videonft">Video</option>
+          <option value="gifnft">Gif</option>
+        </select>
+        <select
+          className="ms-2 form-select"
+          id="nftVersionSelect"
+        >
+          <option value="default" defaultValue>
+            Select NFT Version
+          </option>
+          <option value="imagenft">Soul Bound NFT</option>
+          <option value="videonft">Simple NFT</option>
+        </select>
       </div>
-
-      {/*Actual MarketPlace*/}
 
       <div className="d-flex row">
-        {cards}
+        {data.length == 1 ? <Loader/> : data.map((value, index) => {
+          return <NFTTile data={value} key={index}></NFTTile>;
+        })}
       </div>
     </div>
-  )
+  );
 }
-
-
-export default MarketPlace;

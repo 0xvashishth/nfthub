@@ -2010,10 +2010,10 @@ progress {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #303030;
-  background-color: #fff;
+  color: #fff;
+  background-color: transparent;
   background-clip: padding-box;
-  border: 1px solid #222;
+  border: 1px solid #ffffff;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -2032,11 +2032,11 @@ progress {
   cursor: pointer;
 }
 .form-control:focus {
-  color: #303030;
-  background-color: #fff;
+  color: #ffffff;
+  background-color: transparent;
   border-color: #9badbf;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(55, 90, 127, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(237, 243, 250, 0.25);
 }
 .form-control::-webkit-date-and-time-value {
   height: 1.5em;
@@ -2197,13 +2197,13 @@ textarea.form-control-lg {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #303030;
-  background-color: #fff;
+  color: #ffffff;
+  background-color: transparent;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23303030' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 16px 12px;
-  border: 1px solid #222;
+  border: 1px solid #ffffff;
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   -webkit-appearance: none;
@@ -2218,14 +2218,16 @@ textarea.form-control-lg {
 .form-select:focus {
   border-color: #9badbf;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(55, 90, 127, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(204, 222, 242, 0.25);
+  background-color: transparent;
+  color: rgb(94, 94, 94);
 }
 .form-select[multiple], .form-select[size]:not([size="1"]) {
   padding-right: 0.75rem;
   background-image: none;
 }
 .form-select:disabled {
-  background-color: #ebebeb;
+  background-color: #f1e9e9;
 }
 .form-select:-moz-focusring {
   color: transparent;

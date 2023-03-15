@@ -6,8 +6,8 @@
 }
 
 .cardNft {
-  width: 15rem;
-  background: linear-gradient(to right, #201e2b, #3e1f24);
+  /* display: inline-flex; */
+  background: transparent;
 }
 
 .card-text {
@@ -15,12 +15,12 @@
 }
 
 .card-img-top {
-  height: 200px;
+  height: 400px;
 }
 
-.cardNft {
+/* .cardNft {
   margin: 10px;
-}
+} */
 
 @media only screen and (max-width: 768px) {
   .card-text {
@@ -42,4 +42,8 @@
   .card-img-top {
     height: 100px;
   }
+}
+
+.nftPageImg{
+  height: 400px;
 }

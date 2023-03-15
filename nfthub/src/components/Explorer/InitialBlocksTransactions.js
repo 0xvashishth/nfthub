@@ -138,7 +138,7 @@ function InitialBlocksTransactions() {
           On {currentChain} 🗼
         </div>
         <div className="col-sm-2 col-4">
-          <select className='form-control'>
+          <select className='form-select'>
             <option value="blockNumber">Block Number</option>
             <option value="transaction">Block Hash</option>
           </select>
