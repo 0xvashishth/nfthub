@@ -106,7 +106,7 @@ const NavBar = (props) => {
           </ul>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link connectEmoji" href="#connect">
+              <a className="nav-link connectEmoji" href="/user">
                 {connectEmoji}
               </a>
             </li>

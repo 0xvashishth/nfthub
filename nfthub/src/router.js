@@ -17,6 +17,7 @@ import Transfers from "./components/Transfers/Transfers"
 import Uniswap from "./components/Uniswap/Uniswap";
 import NFTPage from "./components/MarketPlace/NFTPage";
 import SellNFT from "./components/MarketPlace/SellNFT";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
   {
     path: "/nft/:tokenId",
     element: <NFTPage/>
+  },
+  {
+    path: "/user",
+    element: <UserProfile/>
   }
 ]);
 
