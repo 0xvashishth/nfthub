@@ -55,7 +55,7 @@ export default function NFTPage(props) {
           Seller: <span className="text-sm">{item.seller}</span>
         </div>
         <div>
-          {currAddress == item.owner || currAddress == item.seller ? (
+          {currAddress === item.owner || currAddress === item.seller ? (
             <button
               className="enableEthereumButton btn btn-outline-warning mt-3"
               onClick={() => buyNFT(tokenId)}

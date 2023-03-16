@@ -97,7 +97,7 @@ export default function MarketPlace() {
       </div>
 
       <div className="d-flex row">
-        {data.length == 1 ? <Loader/> : data.map((value, index) => {
+        {data.length === 1 ? <Loader/> : data.map((value, index) => {
           return <NFTTile data={value} key={index}></NFTTile>;
         })}
       </div>

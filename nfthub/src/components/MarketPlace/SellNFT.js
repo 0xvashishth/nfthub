@@ -15,7 +15,7 @@ export default function SellNFT() {
   });
   const [fileURL, setFileURL] = useState(null);
   const ethers = require("ethers");
-  const [message, updateMessage] = useState("");
+//   const [message, updateMessage] = useState("");
 
   //This function uploads the NFT image to IPFS
   async function OnChangeFile(e) {
@@ -36,6 +36,11 @@ export default function SellNFT() {
       );
     } catch (e) {
       console.log("Error during file upload", e);
+      toast.error("Error While Uploading Your File 😥, Please Upload Again!",
+        {
+          id: toastId,
+        }
+      );
     }
   }
 
@@ -66,10 +71,9 @@ export default function SellNFT() {
 
   async function listNFT(e) {
     e.preventDefault();
-
+    const toastId = toast.loading("Uploading Your Data To IPFS..😏");
     //Upload data to IPFS
     try {
-      const toastId = toast.loading("Uploading Your Data To IPFS..😏");
       const metadataURL = await uploadMetadataToIPFS();
       //After adding your Hardhat network to your metamask, this code will get providers and signers
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -112,7 +116,11 @@ export default function SellNFT() {
       updateFormParams({ name: "", description: "", price: "" });
       window.location.replace("/nft/marketplace");
     } catch (e) {
-        toast.error("Something Went Wrong 🥺.. Please Try Again..!");
+        toast.error("Something Went Wrong 🥺.. Please Try Again..!",
+        {
+          id: toastId,
+        }
+      );
     }
   }
 

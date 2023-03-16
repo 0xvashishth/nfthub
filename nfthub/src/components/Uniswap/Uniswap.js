@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { providers, ethers } from 'ethers';
-import detectEthereumProvider from '@metamask/detect-provider';
+// import detectEthereumProvider from '@metamask/detect-provider';
 import { darkTheme, SwapWidget } from '@uniswap/widgets';
 import { useGlobalState } from "../../configuration/settings";
 
