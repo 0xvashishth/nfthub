@@ -7,7 +7,7 @@ import "./MarketPlace.css"
 function NFTTile (data) {
     // console.log("dsta is coming", data)
     const newTo = {
-        pathname:"/nftPage/"+data.data.tokenId
+        pathname:"/nft/"+data.data.tokenId
     }
     return (
         <Link to={newTo} className="m-auto mt-2 cardNft col-4">

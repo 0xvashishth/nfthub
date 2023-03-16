@@ -49,12 +49,12 @@ const NavBar = (props) => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/mint">
+                <a className="nav-link" href="/nft/mint">
                   🎨 Mint NFT
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/marketplace">
+                <a className="nav-link" href="/nft/marketplace">
                   🖼️ NFT Marketplace
                 </a>
               </li>

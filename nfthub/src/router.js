@@ -3,7 +3,7 @@ import {
 } from "react-router-dom";
 
 import QuickStart from "./components/QuickStart/QuickStart"
-import MintNft from "./components/MintNft/MintNft"
+// import MintNft from "./components/MintNft/MintNft"
 import MarketPlace from "./components/MarketPlace/MarketPlace"
 import Wallet from "./components/Wallet/Wallet";
 // import Explorer from "./components/Explorer/Explorer";
@@ -16,6 +16,7 @@ import NftIndexer from "./components/NftIndexer/NftIndexer";
 import Transfers from "./components/Transfers/Transfers"
 import Uniswap from "./components/Uniswap/Uniswap";
 import NFTPage from "./components/MarketPlace/NFTPage";
+import SellNFT from "./components/MarketPlace/SellNFT";
 
 const router = createBrowserRouter([
   {
@@ -23,11 +24,11 @@ const router = createBrowserRouter([
     element: <QuickStart/>,
   },
   {
-    path: "/mint",
-    element: <MintNft/>,
+    path: "/nft/mint",
+    element: <SellNFT/>,
   },
   {
-    path: "/marketplace",
+    path: "/nft/marketplace",
     element: <MarketPlace/>,
   },
   {
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
     element: <Uniswap/>
   },
   {
-    path: "/nftPage/:tokenId",
+    path: "/nft/:tokenId",
     element: <NFTPage/>
   }
 ]);
