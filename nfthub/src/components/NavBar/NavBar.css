@@ -5,5 +5,7 @@
   border-radius: 10px;
 } */
 .bg-dark{
+  
   background: linear-gradient(90deg, rgba(67,67,67,1) 0%, rgba(41,34,34,1) 35%, rgba(0,0,0,1) 100%)!important;
+  
 }

@@ -3,6 +3,7 @@ import { uploadFileToIPFS, uploadJSONToIPFS } from "../../configuration/pinata";
 // import { useLocation } from "react-router";
 import NFTHub from "../../contracts/NFTHub.json";
 import toast, { Toaster } from "react-hot-toast";
+import './SellNFT.css'
 // import { useParams , useLocation } from "react-router-dom";
 // import axios from "axios";
 // import {CenterLoader as Loader} from "../Loader/LoaderDNA"
@@ -174,7 +175,7 @@ export default function SellNFT() {
                   }
                 ></textarea>
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="nftType" className="form-label mt-4">
                   NFT Type
                 </label>
@@ -182,7 +183,7 @@ export default function SellNFT() {
                   <option value="soul">SoulBound NFT</option>
                   <option value="simple">Simple NFT</option>
                 </select>
-              </div>
+              </div> */}
               <div className="form-group">
                 <label className="form-label mt-4" htmlFor="price">
                   Price (in ETH)
@@ -199,7 +200,7 @@ export default function SellNFT() {
                 ></input>
               </div>
               <fieldset className="form-group mt-4 mb-3">
-                <div className="form-check form-switch">
+                {/* <div className="form-check form-switch">
                   <input
                     className="form-check-input"
                     type="checkbox"
@@ -211,7 +212,7 @@ export default function SellNFT() {
                   >
                     Allow to send other user if opt for Soul Bound NFT
                   </label>
-                </div>
+                </div> */}
                 <div className="form-group">
                   <label className="form-label mt-4" htmlFor="image">
                     Upload Image

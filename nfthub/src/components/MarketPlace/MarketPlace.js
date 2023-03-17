@@ -96,10 +96,12 @@ export default function MarketPlace() {
         </select>
       </div>
 
-      <div className="d-flex row text-center ">
+      <div className="container">
+      <div className="d-flex row text-center mb-4">
         {data.length === 1 ? <Loader/> : data.map((value, index) => {
           return <NFTTile data={value} key={index}></NFTTile>;
         })}
+      </div>
       </div>
     </div>
   );

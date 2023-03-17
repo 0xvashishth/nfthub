@@ -21,13 +21,13 @@ const MintNft = (props) => {
                 <label htmlFor="nftDescription" className="form-label mt-4">NFT Description</label>
                 <input type="text" className="form-control" id="nftDescription" placeholder="NFT Description" />
               </div>
-              <div className="form-group">
-                <label htmlFor="nftType" className="form-label mt-4">NFT Type</label>
-                <select className="form-select" id="nftType">
-                  <option value="soul">SoulBound NFT</option>
-                  <option value="simple">Simple NFT</option>
-                </select>
-              </div>
+                {/* <div className="form-group">
+                  <label htmlFor="nftType" className="form-label mt-4">NFT Type</label>
+                  <select className="form-select" id="nftType">
+                    <option value="soul">SoulBound NFT</option>
+                    <option value="simple">Simple NFT</option>
+                  </select>
+                </div> */}
               <div className="form-group">
                 <label htmlFor="nftReceiver" className="form-label mt-4">NFT Receiver</label>
                 <input type="text" className="form-control" id="nftReceiver" placeholder="NFT Receiver Address" />
