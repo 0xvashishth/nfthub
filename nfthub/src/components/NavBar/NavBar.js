@@ -1,12 +1,11 @@
 import "./NavBar.css";
+import $ from "jquery";
 import { setChain } from "../../configuration/settings";
 import { useEffect, useState } from "react";
-import $ from "jquery";
 import { setAccount } from "../../configuration/settings";
 import { truncAddr } from "../../configuration/misc";
 
 const NavBar = (props) => {
-
   const [connectEmoji, setconnectEmoji] = useState("🔌 Connect");
 
   useEffect(() => {
@@ -14,17 +13,15 @@ const NavBar = (props) => {
       window.ethereum.request({ method: "eth_requestAccounts" }).then((res) => {
         setAccount(res[0]);
         setconnectEmoji(truncAddr(res[0]));
-        console.log(res);
+        // console.log(res);
       });
     } else {
       alert("install metamask extension!!");
     }
-
     $("#chainSelection").val(localStorage.getItem("globalChain"))
-
   }, []);
 
-  function changeChain(e){
+  function changeChain(e) {
     console.log(e.target.value)
     setChain(e.target.value);
   }
@@ -33,7 +30,7 @@ const NavBar = (props) => {
     // <div className="m-1" style={{ backgroundColor: "none" }}>
       <nav className="p-2 navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#link">
+          <a className="navbar-brand" href="/">
             📢 NFTHub
           </a>
           <div className="collapse navbar-collapse" id="navbarColor03">
