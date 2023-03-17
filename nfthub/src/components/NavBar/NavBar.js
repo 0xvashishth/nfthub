@@ -30,7 +30,7 @@ const NavBar = (props) => {
   }
 
   return (
-    <div className="m-1" style={{ backgroundColor: "none" }}>
+    // <div className="m-1" style={{ backgroundColor: "none" }}>
       <nav className="p-2 navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <a className="navbar-brand" href="#link">
@@ -123,7 +123,7 @@ const NavBar = (props) => {
           </button>
         </div>
       </nav>
-    </div>
+    // </div>
   );
 };
 
