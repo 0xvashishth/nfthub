@@ -15,7 +15,7 @@ export default function SellNFT() {
   });
   const [fileURL, setFileURL] = useState(null);
   const ethers = require("ethers");
-//   const [message, updateMessage] = useState("");
+  //   const [message, updateMessage] = useState("");
 
   //This function uploads the NFT image to IPFS
   async function OnChangeFile(e) {
@@ -95,7 +95,7 @@ export default function SellNFT() {
         }
       );
       let listingPrice = await contract.getListPrice();
-      
+
       listingPrice = listingPrice.toString();
       //actually create the NFT
       let transaction = await contract.createToken(metadataURL, price, {
@@ -116,7 +116,7 @@ export default function SellNFT() {
       updateFormParams({ name: "", description: "", price: "" });
       window.location.replace("/nft/marketplace");
     } catch (e) {
-        toast.error("Something Went Wrong 🥺.. Please Try Again..!",
+      toast.error("Something Went Wrong 🥺.. Please Try Again..!",
         {
           id: toastId,
         }
@@ -126,10 +126,10 @@ export default function SellNFT() {
 
   return (
     <div className="container">
-        <div className="mt-3 middle">
+      <div className="mt-3 middle">
         <h3 className="border border-secondary p-3 rounded">Mint NFT For Sell</h3>
       </div>
-      <div className="border mt-3 p-2 border-white rounded m-auto mb-2 MintDiv">
+      <div className="border p-3 mt-3 border-white rounded m-auto mb-2 MintDiv col-7">
         <div className="">
           <form>
             <fieldset>
