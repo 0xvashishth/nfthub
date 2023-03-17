@@ -4,14 +4,14 @@ import './MintNft.css'
 
 
 const MintNft = (props) => {
-  return(
+  return (
     <div className="m-auto mt-5 mb-2 MintDiv">
       <div className="border p-2 border-white rounded">
         <div className="">
           <form>
             <fieldset>
               <legend className="p-1">Mint Your NFT</legend>
-              <hr/>
+              <hr />
               <div className="form-group">
                 <label htmlFor="exampleInputEmail1" className="form-label mt-4">Create NFT</label>
                 <input type="text" className="form-control" id="nftName" aria-describedby="nftHelp" placeholder="NFT Name" />
@@ -38,9 +38,9 @@ const MintNft = (props) => {
                   <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Allow to send other user if opt for Soul Bound NFT</label>
                 </div>
                 <div className="form-group">
-      <label htmlFor="nftFile" className="form-label mt-4">Upload NFT</label>
-      <input className="form-control" type="file" id="nftFile" />
-    </div>
+                  <label htmlFor="nftFile" className="form-label mt-4">Upload NFT</label>
+                  <input className="form-control" type="file" id="nftFile" />
+                </div>
               </fieldset>
               <button type="submit" className="btn btn-outline-primary">Submit</button>
             </fieldset>

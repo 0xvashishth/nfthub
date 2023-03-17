@@ -80,7 +80,6 @@ const NavBar = (props) => {
                   <a className="dropdown-item" href="/wallet">
                     👛 Wallet
                   </a>
-                  {/*                   <a className="dropdown-item" href="/explorer">🪐 Explorer</a> */}
                   <a className="dropdown-item" href="/explorer">
                     🪐 Block Explorer
                   </a>
