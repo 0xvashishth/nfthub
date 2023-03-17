@@ -157,8 +157,8 @@ function InitialBlocksTransactions() {
             <button className="btn btn-outline-info" onClick={getBlockNumber}>Refresh</button> &nbsp; &nbsp; {btnLoader}
           </div>
         </div>
-        <div className="row m-3">
-          <div className="col-md-6 border border-light rounded">
+        <div className="row m-3 justify-content-around mt-4">
+          <div className="col-md-5 border border-light rounded">
             <table className="table table-hover">
               <thead>
                 <tr>
@@ -171,7 +171,7 @@ function InitialBlocksTransactions() {
               </tbody>
             </table>
           </div>
-          <div className="col-md-6 border border-light rounded">
+          <div className="col-md-5 border border-light rounded">
             <table className="table table-hover">
               <thead>
                 <tr>

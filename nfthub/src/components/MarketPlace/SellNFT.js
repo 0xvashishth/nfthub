@@ -129,7 +129,7 @@ export default function SellNFT() {
       <div className="mt-3 middle">
         <h3 className="border border-secondary p-3 rounded">Mint NFT For Sell</h3>
       </div>
-      <div className="border p-3 mt-3 border-white rounded m-auto mb-2 MintDiv col-7">
+      <div className="border p-3 mt-3 border-white rounded m-auto mb-2 MintDiv col-7 mb-4">
         <div className="">
           <form>
             <fieldset>
@@ -223,7 +223,7 @@ export default function SellNFT() {
                   ></input>
                 </div>
               </fieldset>
-              <button onClick={listNFT} className="btn btn-outline-warning">
+              <button onClick={listNFT} className="mt-3 btn btn-outline-warning">
                 List NFT
               </button>
             </fieldset>

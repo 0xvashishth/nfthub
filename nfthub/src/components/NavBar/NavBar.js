@@ -33,7 +33,7 @@ const NavBar = (props) => {
     <div className="m-1" style={{ backgroundColor: "none" }}>
       <nav className="p-2 navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#link">
+          <a className="navbar-brand" href="/">
             📢 NFTHub
           </a>
           <div className="collapse navbar-collapse" id="navbarColor03">
