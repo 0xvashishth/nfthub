@@ -10,28 +10,28 @@ function InitialBlocksTransactions() {
   const loader = <img alt="loaderimg" src="https://user-images.githubusercontent.com/89864614/213781640-e7232dcc-6ff3-45f8-8c5e-e6f8181fb770.gif" width="20px" />
 
   // const [chain, setChain] = useState("main");
-  const [blockNumber, setBlockNumber] = useState(loader);
   // const selectChain = (event) => {
   //   console.log(event.target.value);
   //   setChain(event.target.value);
   // }
 
+  const [blockNumber, setBlockNumber] = useState(loader);
   const [latestBlocks, setLatestBlocks] = useState(loader);
   const [latestTransactions, setLatestTransactions] = useState(loader);
   const [btnLoader, setbtnLoader] = useState();
-//   const [blockInfo, setBlockInfo] = useState({
-//     hash: loader,
-//     timestamp: loader,
-//     nonce: loader,
-//     transactions: [],
-//   });
+  //   const [blockInfo, setBlockInfo] = useState({
+  //     hash: loader,
+  //     timestamp: loader,
+  //     nonce: loader,
+  //     transactions: [],
+  //   });
 
   var block_details = [];
   var transaction_details = [];
 
   async function getBlockNumber() {
     setbtnLoader(loader);
-    setBlockNumber(await alchemy.core.getBlockNumber().then(async function(result) {
+    setBlockNumber(await alchemy.core.getBlockNumber().then(async function (result) {
       setLatestBlocks(await getBlockInformation(result));
       setLatestTransactions(await getBlockTrancations(result));
       setbtnLoader();
@@ -40,47 +40,47 @@ function InitialBlocksTransactions() {
   }
   const hexToDecimal = hex => parseInt(hex, 16);
 
-  async function getBlockTrancations(blockNumber){
+  async function getBlockTrancations(blockNumber) {
     const transactions = await alchemy.core.getBlockWithTransactions(blockNumber)
-    .then(function(result) {
+      .then(function (result) {
         var transactions = result.transactions;
         console.log("Transaction Info:", transactions);
         var timestamp = result.timestamp * 1000;
         var time = new Date(timestamp).toLocaleTimeString();
-        for(var i=0;i<5;i++){
-            // gas 
-            var strgas = transactions[i].gasPrice._hex;
-            strgas = strgas.slice(2);
-            strgas = hexToDecimal(strgas);
-            // tx
-            var txValue = transactions[i].value._hex;
-            txValue = txValue.slice(2);
-            txValue = hexToDecimal(txValue);
+        for (var i = 0; i < 5; i++) {
+          // gas 
+          var strgas = transactions[i].gasPrice._hex;
+          strgas = strgas.slice(2);
+          strgas = hexToDecimal(strgas);
+          // tx
+          var txValue = transactions[i].value._hex;
+          txValue = txValue.slice(2);
+          txValue = hexToDecimal(txValue);
 
-            transaction_details[i] = <tr className="table-active">
+          transaction_details[i] = <tr className="table-active">
             <td>
               <p>
-                Hash <a href="#link">{(result.hash).slice(0,8)}</a>
+                Hash <a href="#link">{(result.hash).slice(0, 8)}</a>
                 <br />
                 <small className="form-text text-muted">{time}</small>
               </p>
             </td>
             <td>
-                <small><a href="#link">From: {transactions[i].from}</a></small>
-                <br />
-                <small><a href="#link">To: {transactions[i].to}</a></small>
-                <br/>
-                <small className="form-text text-muted">Transaction value: {txValue/1000000000} Gwei</small>
+              <small><a href="#link">From: {transactions[i].from}</a></small>
+              <br />
+              <small><a href="#link">To: {transactions[i].to}</a></small>
+              <br />
+              <small className="form-text text-muted">Transaction value: {txValue / 1000000000} Gwei</small>
             </td>
           </tr>
         }
-    })
+      })
     return transaction_details;
   }
 
   async function getBlockInformation(blocknumber) {
-    for (var i = 0; i < 5; i++) {
-      await alchemy.core.getBlock(blocknumber - i).then(function(result) {
+    for (let i = 0; i < 5; i++) {
+      await alchemy.core.getBlock(blocknumber - i).then(function (result) {
         var timestamp = result.timestamp * 1000;
         var time = new Date(timestamp).toLocaleTimeString();
         var strgas = result.gasUsed._hex;
@@ -99,11 +99,11 @@ function InitialBlocksTransactions() {
             </p>
           </td>
           <td>
-              <small><a href="#link">{result.miner}</a></small>
-              <br />
-              <small className="form-text text-muted">Gas Used 🔥: {strgas/1000000000} Gwei</small>
-              <br />
-              <small className="form-text text-muted">Total Transactions: {result.transactions.length}</small>
+            <small><a href="#link">{result.miner}</a></small>
+            <br />
+            <small className="form-text text-muted">Gas Used 🔥: {strgas / 1000000000} Gwei</small>
+            <br />
+            <small className="form-text text-muted">Total Transactions: {result.transactions.length}</small>
           </td>
         </tr>
         // setBlockInfo(result);

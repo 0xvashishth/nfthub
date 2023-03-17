@@ -1,12 +1,11 @@
 import "./NavBar.css";
+import $ from "jquery";
 import { setChain } from "../../configuration/settings";
 import { useEffect, useState } from "react";
-import $ from "jquery";
 import { setAccount } from "../../configuration/settings";
 import { truncAddr } from "../../configuration/misc";
 
 const NavBar = (props) => {
-
   const [connectEmoji, setconnectEmoji] = useState("🔌 Connect");
 
   useEffect(() => {
@@ -14,17 +13,15 @@ const NavBar = (props) => {
       window.ethereum.request({ method: "eth_requestAccounts" }).then((res) => {
         setAccount(res[0]);
         setconnectEmoji(truncAddr(res[0]));
-        console.log(res);
+        // console.log(res);
       });
     } else {
       alert("install metamask extension!!");
     }
-
     $("#chainSelection").val(localStorage.getItem("globalChain"))
-
   }, []);
 
-  function changeChain(e){
+  function changeChain(e) {
     console.log(e.target.value)
     setChain(e.target.value);
   }

@@ -3,8 +3,6 @@ import { providers, ethers } from 'ethers';
 // import detectEthereumProvider from '@metamask/detect-provider';
 import { darkTheme, SwapWidget } from '@uniswap/widgets';
 import { useGlobalState } from "../../configuration/settings";
-
-
 // const infuraRpc = process.env.REACT_APP_INFURA_ID;
 const jsonRpcEndpoint = process.env.REACT_APP_INFURA_RPC;
 const jsonRpcProvider = new providers.JsonRpcProvider(jsonRpcEndpoint);
@@ -36,7 +34,7 @@ function Uniswap() {
 
   return (
     <div className="container middle justify-content-center pt-5">
-      <div className="Uniswap">
+      <div className="Uniswap border border-light rounded">
         <SwapWidget
           theme={darkTheme}
           width="100%"
@@ -46,5 +44,5 @@ function Uniswap() {
     </div>
   );
 }
-    
+
 export default Uniswap;

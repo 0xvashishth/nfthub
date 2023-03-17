@@ -1,6 +1,7 @@
 import { Network, Alchemy } from "alchemy-sdk";
 import { createGlobalState } from "react-hooks-global-state";
 
+
 const settingsMumbai = {
   apiKey: process.env.REACT_APP_ALCHEMY_API_KEY_MATIC_MUMBAI,
   network: Network.MATIC_MUMBAI,
@@ -30,6 +31,7 @@ const { setGlobalState, useGlobalState } = createGlobalState({
   currentAccountAddress: "",
   globalAlchemyInstance: setAlchemyConfiguration(),
 });
+
 
 function setAlchemyConfiguration() {
   var chain = localStorage.getItem("globalChain");
