@@ -5,7 +5,6 @@
 /.pnp
 .pnp.js
 /nfthub/.env
-package.json
 package-lock.json
 
 # testing
