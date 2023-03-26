@@ -70,7 +70,7 @@ export default function MarketPlace() {
       <div className="mt-3 middle">
         <h3 className="border border-secondary p-3 rounded">NFT MarketPlace</h3>
       </div>
-      <div className="mt-3 d-flex">
+      {/* <div className="mt-3 d-flex">
         <select
           className="form-select"
           id="nftType"
@@ -94,10 +94,10 @@ export default function MarketPlace() {
           <option value="imagenft">Soul Bound NFT</option>
           <option value="videonft">Simple NFT</option>
         </select>
-      </div>
+      </div> */}
 
       <div className="container">
-      <div className="d-flex row text-center mb-4">
+      <div className="d-flex row justify-content-center text-center mb-4">
         {data.length === 1 ? <Loader/> : data.map((value, index) => {
           return <NFTTile data={value} key={index}></NFTTile>;
         })}

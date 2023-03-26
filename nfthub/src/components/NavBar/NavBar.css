@@ -5,7 +5,42 @@
   border-radius: 10px;
 } */
 .bg-dark{
-  
   background: linear-gradient(90deg, rgba(67,67,67,1) 0%, rgba(41,34,34,1) 35%, rgba(0,0,0,1) 100%)!important;
-  
 }
+
+.btn-sm {
+  border-radius: 1rem;
+  border: 1px solid white;
+}
+
+.btn-sm:hover {
+  border: 1px solid white;
+  transform: scale(1.05);
+  transition: ease-in 0.1s;
+  box-shadow: 0 0 0.7rem white!important;
+}
+
+.btn-sm:focus {
+  border: 1px solid white;
+  animation-name: click;
+  animation-duration: 0.2s;
+  box-shadow: 0 0 0.7rem white!important;
+}
+
+@keyframes click {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-danger{
+  /* background-color: rgb(230, 66, 66); */
+  background-color: #046a7a!important;
+}
+

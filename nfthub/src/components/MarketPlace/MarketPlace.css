@@ -10,9 +10,15 @@
   background: transparent;
 }
 
+.back-drop{
+  background:rgba(53, 53, 53, 0.47);
+  backdrop-filter:blur(175px);
+  box-shadow: 0px 2px 20px 3px #000;
+}
 .card:hover{
-  border-color: rgb(13, 110, 253);
+  border-color: rgb(6, 85, 204);
   box-shadow: 0px 2px 20px 2px rgb(13, 110, 253);
+  transition: ease-out 0.5s;
 }
 .card-text {
   font-size: 14px;

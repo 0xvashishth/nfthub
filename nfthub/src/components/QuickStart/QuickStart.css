@@ -11,9 +11,8 @@
 }
 
 .imgleft{
-  height:35vh;
+  height:15rem;
   width:100%;
-/*   transition: all .9s ease-in-out;  */
 }
 
 .nfthubtitle{
@@ -42,8 +41,8 @@ transition: 1s ease;
 .centerimg {
   display: flex; 
   justify-content: center;
-   align-items: center;
-  background: transparent;
+  align-items: center;
+  
 }
 
 /* Media Queries  */

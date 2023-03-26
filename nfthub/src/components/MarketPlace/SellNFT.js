@@ -130,13 +130,13 @@ export default function SellNFT() {
       <div className="mt-3 middle">
         <h3 className="border border-secondary p-3 rounded">Mint NFT For Sell</h3>
       </div>
-      <div className="border p-3 mt-3 border-white rounded m-auto mb-2 MintDiv col-7 mb-4">
+      <div className="border p-3 mt-3 border-white rounded m-auto MintDiv col-7 mb-4">
         <div className="">
-          <form>
+          <form className="">
             <fieldset>
               {/* <legend className="p-1">Mint Your NFT</legend>
               <hr /> */}
-              <div className="form-group">
+              <div className="form-group ">
                 <label className="form-label mt-4" htmlFor="name">
                   NFT Name
                 </label>
@@ -156,7 +156,7 @@ export default function SellNFT() {
                 </small>
               </div>
               <div className="form-group">
-                <label htmlFor="description" className="form-label mt-4">
+                <label htmlFor="description" className="form-label  mt-4">
                   NFT Description
                 </label>
                 <textarea
@@ -185,7 +185,7 @@ export default function SellNFT() {
                 </select>
               </div> */}
               <div className="form-group">
-                <label className="form-label mt-4" htmlFor="price">
+                <label className="form-label  mt-4" htmlFor="price">
                   Price (in ETH)
                 </label>
                 <input
@@ -214,7 +214,7 @@ export default function SellNFT() {
                   </label>
                 </div> */}
                 <div className="form-group">
-                  <label className="form-label mt-4" htmlFor="image">
+                  <label className="form-label " htmlFor="image">
                     Upload Image
                   </label>
                   <input

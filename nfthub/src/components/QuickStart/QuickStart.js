@@ -1,6 +1,7 @@
 import React from "react";
 import "./QuickStart.css";
 import character from "./character.png";
+import boredApeYatchBgLess from "./boredApeYatchBgLess.png";
 
 
 const QuickStart = (props) => {
@@ -10,10 +11,10 @@ const QuickStart = (props) => {
       <div className="m-2">
         <div className="container">
           <div className="row d-flex justify-content-center">
-            <div className="col-md-3 quickContentLeft border border-white rounded m-3">
+            <div className="col-md-3 quickContentLeft border border-white rounded m-3 pb-0">
               <p className="nfthubtitle mt-3">📢 NFTHUB</p>
               <hr />
-              <img alt="img" className="imgleft centerimg" src={character}></img>
+              <img alt="img" className="imgleft centerimg" src={boredApeYatchBgLess}></img>
             </div>
             <div className="col-md-6 quickContentRight  border border-white rounded m-3">
               <p className="nfthubtitle mt-3">👀 What is NFTHUB? </p>

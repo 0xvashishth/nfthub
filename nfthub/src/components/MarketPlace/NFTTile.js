@@ -11,7 +11,7 @@ function NFTTile (data) {
     }
     return (
         <Link to={newTo} className="m-auto mt-4 cardNft col-4" style={{textDecoration:"none"}}>
-        <div className="card" style={{background:"rgba(53, 53, 53, 0.47)",backdropFilter:'blur(175px)'}}>
+        <div className="card back-drop" style={{width:"20rem"}}>
             <img src={data.data.image} className="card-img-top" style={{height:"15rem"}}  alt="..." />
             <div className= "card-body">
                 <strong className="card-title" style={{color:"#F2AA4CFF"}}>{data.data.name}</strong>
