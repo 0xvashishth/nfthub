@@ -4,4 +4,23 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.form{
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: saturate(180%) blur(5px);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
 
+h3{
+  font-size: 3rem!important;
+  font-weight: bold;
+  /* background: background-color: #2d3436; */
+  background-color: #2d3436;
+  background-image: linear-gradient(315deg, #2d3436 0%, #d3d3d3 50%);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+label{
+  color: rgb(45, 52, 54,0.85);
+}

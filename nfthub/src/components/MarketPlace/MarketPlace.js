@@ -2,7 +2,7 @@ import NFTTile from "./NFTTile";
 import NFTHub from "../../contracts/NFTHub.json";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {CenterLoader as Loader} from "../Loader/LoaderDNA"
+import { CenterLoader as Loader } from "../Loader/LoaderDNA"
 // import $ from "jquery";
 
 export default function MarketPlace() {
@@ -58,6 +58,7 @@ export default function MarketPlace() {
         return item;
       })
     );
+    console.log(items);
     updateData(items);
   }
 
@@ -97,11 +98,11 @@ export default function MarketPlace() {
       </div> */}
 
       <div className="container">
-      <div className="d-flex row justify-content-center text-center mb-4">
-        {data.length === 1 ? <Loader/> : data.map((value, index) => {
-          return <NFTTile data={value} key={index}></NFTTile>;
-        })}
-      </div>
+        <div className="d-flex row">
+          {data.length === 1 ? <Loader /> : data.map((value, index) => {
+            return <NFTTile data={value} key={index}></NFTTile>;
+          })}
+        </div>
       </div>
     </div>
   );

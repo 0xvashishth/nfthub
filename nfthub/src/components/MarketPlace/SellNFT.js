@@ -128,54 +128,53 @@ export default function SellNFT() {
   return (
     <div className="container">
       <div className="mt-3 middle">
-        <h3 className="border border-secondary p-3 rounded">Mint NFT For Sell</h3>
+        <h3 className="p-3 rounded">Mint NFT For Sell</h3>
       </div>
-      <div className="border p-3 mt-3 border-white rounded m-auto MintDiv col-7 mb-4">
-        <div className="">
-          <form className="">
-            <fieldset>
-              {/* <legend className="p-1">Mint Your NFT</legend>
+      <div className="border p-3 mt-3 border-white rounded m-auto MintDiv col-7 mb-4 form">
+        <form>
+          <fieldset>
+            {/* <legend className="p-1">Mint Your NFT</legend>
               <hr /> */}
-              <div className="form-group ">
-                <label className="form-label mt-4" htmlFor="name">
-                  NFT Name
-                </label>
-                <input
-                  className="form-control"
-                  id="name"
-                  type="text"
-                  placeholder="Axie#4563"
-                  onChange={(e) =>
-                    updateFormParams({ ...formParams, name: e.target.value })
-                  }
-                  value={formParams.name}
-                ></input>
-                <small id="nftHelp" className="form-text text-muted">
-                  Please make sure that you will not be able to edit the
-                  properties of the NFT.
-                </small>
-              </div>
-              <div className="form-group">
-                <label htmlFor="description" className="form-label  mt-4">
-                  NFT Description
-                </label>
-                <textarea
-                  className="form-control"
-                  cols="40"
-                  rows="5"
-                  id="description"
-                  type="text"
-                  placeholder="Axie Infinity Collection"
-                  value={formParams.description}
-                  onChange={(e) =>
-                    updateFormParams({
-                      ...formParams,
-                      description: e.target.value,
-                    })
-                  }
-                ></textarea>
-              </div>
-              {/* <div className="form-group">
+            <div className="form-group ">
+              <label className="form-label mt-4" htmlFor="name">
+                NFT Name
+              </label>
+              <input
+                className="form-control"
+                id="name"
+                type="text"
+                placeholder="Axie#4563"
+                onChange={(e) =>
+                  updateFormParams({ ...formParams, name: e.target.value })
+                }
+                value={formParams.name}
+              ></input>
+              <small id="nftHelp" className="form-text text-muted">
+                Please make sure that you will not be able to edit the
+                properties of the NFT.
+              </small>
+            </div>
+            <div className="form-group">
+              <label htmlFor="description" className="form-label  mt-4">
+                NFT Description
+              </label>
+              <textarea
+                className="form-control"
+                cols="40"
+                rows="5"
+                id="description"
+                type="text"
+                placeholder="Axie Infinity Collection"
+                value={formParams.description}
+                onChange={(e) =>
+                  updateFormParams({
+                    ...formParams,
+                    description: e.target.value,
+                  })
+                }
+              ></textarea>
+            </div>
+            {/* <div className="form-group">
                 <label htmlFor="nftType" className="form-label mt-4">
                   NFT Type
                 </label>
@@ -184,23 +183,23 @@ export default function SellNFT() {
                   <option value="simple">Simple NFT</option>
                 </select>
               </div> */}
-              <div className="form-group">
-                <label className="form-label  mt-4" htmlFor="price">
-                  Price (in ETH)
-                </label>
-                <input
-                  className="form-control"
-                  type="number"
-                  placeholder="Min 0.01 ETH"
-                  step="0.01"
-                  value={formParams.price}
-                  onChange={(e) =>
-                    updateFormParams({ ...formParams, price: e.target.value })
-                  }
-                ></input>
-              </div>
-              <fieldset className="form-group mt-4 mb-3">
-                {/* <div className="form-check form-switch">
+            <div className="form-group">
+              <label className="form-label  mt-4" htmlFor="price">
+                Price (in ETH)
+              </label>
+              <input
+                className="form-control"
+                type="number"
+                placeholder="Min 0.01 ETH"
+                step="0.01"
+                value={formParams.price}
+                onChange={(e) =>
+                  updateFormParams({ ...formParams, price: e.target.value })
+                }
+              ></input>
+            </div>
+            <fieldset className="form-group mt-4 mb-3">
+              {/* <div className="form-check form-switch">
                   <input
                     className="form-check-input"
                     type="checkbox"
@@ -213,24 +212,23 @@ export default function SellNFT() {
                     Allow to send other user if opt for Soul Bound NFT
                   </label>
                 </div> */}
-                <div className="form-group">
-                  <label className="form-label " htmlFor="image">
-                    Upload Image
-                  </label>
-                  <input
-                    className="form-control"
-                    type={"file"}
-                    onChange={OnChangeFile}
-                  ></input>
-                </div>
-              </fieldset>
-              <button onClick={listNFT} className="mt-3 btn btn-outline-warning">
-                List NFT
-              </button>
+              <div className="form-group">
+                <label className="form-label " htmlFor="image">
+                  Upload Image
+                </label>
+                <input
+                  className="form-control"
+                  type={"file"}
+                  onChange={OnChangeFile}
+                ></input>
+              </div>
             </fieldset>
-          </form>
-          <Toaster position="bottom-center" reverseOrder={false} />
-        </div>
+            <button onClick={listNFT} className="mt-3 btn btn-warning">
+              List NFT
+            </button>
+          </fieldset>
+        </form>
+        <Toaster position="bottom-center" reverseOrder={false} />
       </div>
     </div>
   );
