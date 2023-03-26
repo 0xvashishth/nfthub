@@ -1,6 +1,6 @@
 import './App.css';
 import NavBar from './components/NavBar/NavBar'
-import router from './router.js'
+import router from "./router"
 import {
   RouterProvider,
 } from "react-router-dom";
