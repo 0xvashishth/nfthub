@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /nfthub/.env
+package.json
 package-lock.json
 
 # testing
@@ -24,3 +25,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .env
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+
+# Hardhat files
+cache
+artifacts
+
