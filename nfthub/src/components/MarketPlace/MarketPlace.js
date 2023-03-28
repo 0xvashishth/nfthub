@@ -1,5 +1,5 @@
 import NFTTile from "./NFTTile";
-import NFTHub from "../../contracts/NFTHub.json";
+// import NFTHub from "../../contracts/NFTHub.json";
 import NH from "../../contracts/NH.json";
 import axios from "axios";
 import { useState, useEffect } from "react";

@@ -6,7 +6,7 @@ import "../node_modules/@openzeppelin/contracts/utils/Counters.sol";
 import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract NFTHUB is ERC721URIStorage{
+contract NFTHUB1 is ERC721URIStorage{
 
     using Counters for Counters.Counter;
     //_tokenIds variable has the most recent minted tokenId

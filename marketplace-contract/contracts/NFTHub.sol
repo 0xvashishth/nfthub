@@ -71,6 +71,16 @@ contract NFTHUB is ERC721URIStorage{
         return _tokenIds.current();
     }
 
+    function getVerificationOfAuthor(uint tokenId, address author) public view returns(bool){
+        require(_ownerOf(tokenId) != address(0), "Invalid token ID");
+
+        if(_owners[tokenId][author]){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     //The first time a token is created, it is listed here
     function createToken(string memory tokenURI, uint256 price, address payable [] memory to, bool isSoulBound, bool iscurrentListed) public payable returns (uint) {
         if(isSoulBound){
@@ -137,15 +147,27 @@ contract NFTHUB is ERC721URIStorage{
         // remove this unneccessary counts using array.push()
         // -------------------------------------------------------------------
         uint nftCount = _tokenIds.current();
-        ListedToken[] memory tokens = new ListedToken[](nftCount);
-        uint currentIndex = 0;
-        uint currentId;
-        //at the moment currentlyListed is true for all, if it becomes false in the future we will 
-        //filter out currentlyListed == false over here
+        
+        // uint currentId;
+        uint totalListed=0;
+
+        // checking additional fields for removeing the newer
         for(uint i=0;i<nftCount;i++)
         {
-            currentId = i + 1;
-            ListedToken storage currentItem = idToListedToken[currentId];
+            if(idToListedToken[i+1].currentlyListed == true){
+                totalListed += 1;
+            }
+        }
+
+        ListedToken[] memory tokens = new ListedToken[](totalListed);
+        
+        //at the moment currentlyListed is true for all, if it becomes false in the future we will 
+        //filter out currentlyListed == false over here
+        uint currentIndex = 0;
+        for(uint i=0;i<nftCount;i++)
+        {
+            // currentId = i + 1;
+            ListedToken storage currentItem = idToListedToken[i+1];
             if(currentItem.currentlyListed == true){
                 tokens[currentIndex] = currentItem;
                 currentIndex += 1;
