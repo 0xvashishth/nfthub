@@ -118,12 +118,12 @@ const Wallet = () => {
   return (
     <div className="middle d-flex justify-content-center">
       <div className="container mt-4 middle">
+        <h3 className="justify-content-center text-center">Wallet</h3>
         <div
-          className="border border-white rounded p-4"
+          className="border border-white rounded p-4 form"
           style={{ width: "40rem" }}
         >
-          <h3 className="justify-content-center text-center">Wallet</h3>
-          <span className="m-1 text-muted d-flex">On {currentChain} 🗼</span>
+          <span className="m-1 d-flex">On {currentChain} 🗼</span>
           <hr />
           <form onSubmit={transferHandler}>
             <div className="form-group">
@@ -180,7 +180,7 @@ const Wallet = () => {
               <button
                 type="submit"
                 id="transfer"
-                className="btn btn-outline-light mt-4"
+                className="btn btn-warning mt-4"
               >
                 Transfer
               </button>

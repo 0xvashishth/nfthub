@@ -69,7 +69,7 @@ export default function MarketPlace() {
   return (
     <div className="">
       <div className="mt-3 middle">
-        <h3 className="border border-secondary p-3 rounded">NFT MarketPlace</h3>
+        <h3 className="p-3 rounded">NFT MarketPlace</h3>
       </div>
       {/* <div className="mt-3 d-flex">
         <select

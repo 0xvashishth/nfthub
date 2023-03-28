@@ -16,3 +16,11 @@ html{
 .App{
   background: none;
 }
+
+input::placeholder{
+  color: white!important;
+}
+
+.text-muted{
+  color:#424242!important;
+}

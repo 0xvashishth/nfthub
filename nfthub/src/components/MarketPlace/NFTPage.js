@@ -127,7 +127,7 @@ export default function NFTPage() {
   }, [])
 
   return (
-    <div className="row container m-4 middle d-flex mx-auto border border-info p-2">
+    <div className="row container m-4 d-flex mx-auto border border-info p-2" style={{display:"flex",justifyContent:"center"}}>
       {displayData}
     </div>
   );

@@ -59,14 +59,14 @@ export default function NftIndexer() {
   return (
     <>
       <div className=" mt-4 middle">
+        <h3 className="justify-content-center text-center">Transfers</h3>
         <div
-          className="border border-white rounded p-4"
+          className="border border-white form rounded p-4"
           style={{ width: "40rem" }}
         >
-          <h3 className="justify-content-center text-center">Transfers</h3>
           <div className="row">
             <div className="col-6">
-              <span className="m-1 text-muted d-flex">
+              <span className="m-1 d-flex">
                 On {currentChain} 🗼
               </span>
             </div>
@@ -108,7 +108,7 @@ export default function NftIndexer() {
               type="submit"
               id="transfer"
               onClick={getTokenBalance}
-              className="btn btn-outline-light mt-4"
+              className="btn btn-warning mt-4"
             >
               Check Your NFTs
             </button>

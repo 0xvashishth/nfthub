@@ -62,7 +62,7 @@ function InitialBlocksTransactions() {
               <p>
                 Hash <a href="#link">{(result.hash).slice(0, 8)}</a>
                 <br />
-                <small className="form-text text-muted">{time}</small>
+                <small className="form-text">{time}</small>
               </p>
             </td>
             <td>
@@ -70,7 +70,7 @@ function InitialBlocksTransactions() {
               <br />
               <small><a href="#link">To: {transactions[i].to}</a></small>
               <br />
-              <small className="form-text text-muted">Transaction value: {txValue / 1000000000} Gwei</small>
+              <small className="form-text">Transaction value: {txValue / 1000000000} Gwei</small>
             </td>
           </tr>
         }
@@ -95,15 +95,15 @@ function InitialBlocksTransactions() {
             <p>
               Block <a href={blockLink}>{result.number}</a>
               <br />
-              <small className="form-text text-muted">{time}</small>
+              <small className="form-text">{time}</small>
             </p>
           </td>
           <td>
             <small><a href="#link">{result.miner}</a></small>
             <br />
-            <small className="form-text text-muted">Gas Used 🔥: {strgas / 1000000000} Gwei</small>
+            <small className="form-text ">Gas Used 🔥: {strgas / 1000000000} Gwei</small>
             <br />
-            <small className="form-text text-muted">Total Transactions: {result.transactions.length}</small>
+            <small className="form-text ">Total Transactions: {result.transactions.length}</small>
           </td>
         </tr>
         // setBlockInfo(result);
@@ -145,7 +145,7 @@ function InitialBlocksTransactions() {
         </div>
         <div className='col-sm-8 d-flex'>
           <input className="form-control" id="hashInput" placeholder='Enter Hash/Block Number' />&nbsp;&nbsp;
-          <button className='btn btn-outline-light' onClick={ViewBlock}>View</button>
+          <button className='btn btn-dark' style={{background:"#fe7886"}} onClick={ViewBlock}>View</button>
         </div>
       </div>
       <div className="mt-4">
