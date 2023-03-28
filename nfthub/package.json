@@ -12,7 +12,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@uniswap/widgets": "^2.47.10",
-    "alchemy-sdk": "^2.4.3",
+    "alchemy-sdk": "^2.6.2",
     "babel-plugin-macros": "^3.1.0",
     "bignumber.js": "^9.1.1",
     "dotenv": "^16.0.3",
