@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { uploadFileToIPFS, uploadJSONToIPFS } from "../../configuration/pinata";
 // import { useLocation } from "react-router";
-import NFTHub from "../../contracts/NFTHub.json";
+// import NFTHub from "../../contracts/NFTHub.json";
+import NH from "../../contracts/NH.json";
+// import { Utils } from "alchemy-sdk";
+import { useGlobalState } from "../../configuration/settings";
 import toast, { Toaster } from "react-hot-toast";
 import './SellNFT.css'
 // import { useParams , useLocation } from "react-router-dom";
@@ -9,10 +12,14 @@ import './SellNFT.css'
 // import {CenterLoader as Loader} from "../Loader/LoaderDNA"
 
 export default function SellNFT() {
+  const [currentAccountAddress] = useGlobalState("currentAccountAddress");
   const [formParams, updateFormParams] = useState({
     name: "",
     description: "",
     price: "",
+    to: "",
+    isSoulBound: false,
+    iscurrentListed: false,
   });
   const [fileURL, setFileURL] = useState(null);
   const ethers = require("ethers");
@@ -71,9 +78,56 @@ export default function SellNFT() {
   }
 
   async function listNFT(e) {
+    const toastId = toast.loading("Started Listing NFT.. 🤩");
     e.preventDefault();
-    const toastId = toast.loading("Uploading Your Data To IPFS..😏");
-    //Upload data to IPFS
+    var { name, description, price, to, isSoulBound, iscurrentListed } = formParams;
+    if(!price || !name || !description){
+      toast.error("Please Fill All The Fields.. ⚒",
+        {
+          id: toastId,
+        }
+      );
+      return;
+    }
+    var toArray = [];
+    if(to === ""){
+      toArray[0] = currentAccountAddress;
+    }else{
+      to = to.replace(/\s/g, "");
+      toArray = to.split(",");
+      console.log(toArray)
+      if(toArray.length < 1){
+        toast.error("Please Provide Address Correctly or refresh your browser.. ⚒",
+        {
+          id: toastId,
+        }
+      );
+      return;
+      }
+    }
+    if (iscurrentListed) {
+      if (isSoulBound) {
+        toast.error("You can's list a SoulBound NFT.. ⚒",
+          {
+            id: toastId,
+          }
+        );
+        return;
+      }
+      else if (toArray.length > 1) {
+        toast.error("You can't list NFT of multiple owners.. ⚒",
+          {
+            id: toastId,
+          }
+        );
+        return;
+      }
+    }
+    toast.loading("Uploading Your Data To IPFS..😏", { id: toastId, });
+    // let weiAmount = Utils.parseEther(price);
+    // console.log(weiAmount);
+
+    // Upload data to IPFS
     try {
       const metadataURL = await uploadMetadataToIPFS();
       //After adding your Hardhat network to your metamask, this code will get providers and signers
@@ -84,22 +138,23 @@ export default function SellNFT() {
           id: toastId,
         }
       );
+      
 
-      //Pull the deployed contract instance
-      let contract = new ethers.Contract(NFTHub.address, NFTHub.abi, signer);
-      //massage the params to be sent to the create NFT request
-      const price = ethers.utils.parseUnits(formParams.price, "ether");
-      console.log(price)
-      toast.loading("Preparing Data From BlockChain.. 🎉",
-        {
-          id: toastId,
-        }
-      );
-      let listingPrice = await contract.getListPrice();
+    //Pull the deployed contract instance
+    let contract = new ethers.Contract(NH.address, NH.abi, signer);
+    //massage the params to be sent to the create NFT request
+    const price = ethers.utils.parseUnits(formParams.price, "ether");
+    console.log(price)
+    toast.loading("Preparing Data From BlockChain.. 🎉",
+      {
+        id: toastId,
+      }
+    );
+    let listingPrice = await contract.getListPrice();
 
       listingPrice = listingPrice.toString();
       //actually create the NFT
-      let transaction = await contract.createToken(metadataURL, price, {
+      let transaction = await contract.createToken(metadataURL, price, toArray, isSoulBound, iscurrentListed, {
         value: listingPrice,
       });
       toast.loading("Creating Your NFT.. 🎉🎭",
@@ -122,7 +177,9 @@ export default function SellNFT() {
           id: toastId,
         }
       );
+      return;
     }
+    console.log(formParams)
   }
 
   return (
@@ -184,7 +241,7 @@ export default function SellNFT() {
                 </select>
               </div> */}
             <div className="form-group">
-              <label className="form-label  mt-4" htmlFor="price">
+              <label className="form-label mt-4" htmlFor="price">
                 Price (in ETH)
               </label>
               <input
@@ -199,20 +256,57 @@ export default function SellNFT() {
               ></input>
             </div>
             <fieldset className="form-group mt-4 mb-3">
-              {/* <div className="form-check form-switch">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="flexSwitchCheckDefault"
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="flexSwitchCheckDefault"
-                  >
-                    Allow to send other user if opt for Soul Bound NFT
-                  </label>
-                </div> */}
-              <div className="form-group">
+              <div className="form-check form-switch mb-3">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="flexSwitchCheckDefault"
+                  onChange={(e) =>
+                    updateFormParams({ ...formParams, isSoulBound: e.target.checked })
+                  }
+                  value={formParams.isSoulBound}
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="flexSwitchCheckDefault"
+                >
+                  SoulBound NFT
+                </label>
+              </div>
+
+              <div className="form-check form-switch mb-3">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="flexSwitchCheckDefault1"
+                  onChange={(e) =>
+                    updateFormParams({ ...formParams, iscurrentListed: e.target.checked })
+                  }
+                  value={formParams.iscurrentListed}
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="flexSwitchCheckDefault1"
+                >
+                  Want to list for sell this NFT?
+                </label>
+                <br />
+                <small id="flexSwitchCheckDefault1" className="form-text text-muted">
+                  If opting soulbound than you can't list this NFT for sell.
+                </small>
+              </div>
+
+
+              <div className="form-group mt-4">
+                <label className="form-label " htmlFor="toAddr">
+                  To whom you want to transfer this NFT?
+                </label>
+                <input className="form-control" type="text" id="toAddr" onChange={(e) =>
+                  updateFormParams({ ...formParams, to: e.target.value })
+                }
+                  value={formParams.to} placeholder="If you want this NFT for you, then leave it blank.." />
+              </div>
+              <div className="form-group mt-4">
                 <label className="form-label " htmlFor="image">
                   Upload Image
                 </label>

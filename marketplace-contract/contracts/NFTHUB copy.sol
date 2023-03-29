@@ -1,12 +1,12 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.18;
 
-import "hardhat/console.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "../node_modules/hardhat/console.sol";
+import "../node_modules/@openzeppelin/contracts/utils/Counters.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract MultiUse is ERC721URIStorage{
+contract NFTHUB1 is ERC721URIStorage{
 
     using Counters for Counters.Counter;
     //_tokenIds variable has the most recent minted tokenId
@@ -16,7 +16,7 @@ contract MultiUse is ERC721URIStorage{
     //owner is the contract address that created the smart contract
     address payable owner;
     //The fee charged by the marketplace to be allowed to list an NFT
-    uint256 listPrice = 0.01 ether;
+    uint256 listPrice = 0.001 ether;
 
 
     //The structure to store info about a listed token
@@ -41,7 +41,7 @@ contract MultiUse is ERC721URIStorage{
     mapping (uint256 => mapping (address => bool)) private _owners;
     mapping (uint256 => address []) private _ownersArray;
 
-    constructor() ERC721("MultiUse", "MU") {
+    constructor() ERC721("NFTHUB", "NH") {
         owner = payable(msg.sender);
     }
 
@@ -71,22 +71,13 @@ contract MultiUse is ERC721URIStorage{
         return _tokenIds.current();
     }
 
-    function changeToListed(uint tokenId) public{
-        // false => Msg print and reverted
-        // checking access
-        require(_owners[tokenId][msg.sender], "You are not authorized!");
-        require(!idToListedToken[tokenId]._isSoulBound, "SoulBound NFT can't be listed!");
-        require(!idToListedToken[tokenId].currentlyListed, "NFT Already Listed!");
-        require(_ownersArray[tokenId].length == 1, "NFT has multiple owners, It can't be listed!");
-        // changing to true
-        idToListedToken[tokenId].currentlyListed  = true;
-    }
-
     //The first time a token is created, it is listed here
     function createToken(string memory tokenURI, uint256 price, address payable [] memory to, bool isSoulBound, bool iscurrentListed) public payable returns (uint) {
-        require(isSoulBound && iscurrentListed,"It can't be listed because it is soulbound!");
+        if(isSoulBound){
+            require(iscurrentListed == false,"It can't be listed because it is soulbound!");
+        }
         if(to.length > 1){
-            require(iscurrentListed, "It can't be listed because there are multiple owners!");
+            require(iscurrentListed == false, "It can't be listed because there are multiple owners!");
         }
         //Increment the tokenId counter, which is keeping track of the number of minted NFTs
         _tokenIds.increment();
@@ -107,7 +98,10 @@ contract MultiUse is ERC721URIStorage{
 
     function createListedToken(uint256 tokenId, uint256 price, bool isSoulBound, bool iscurrentListed, address payable [] memory to) private {
         //Make sure the sender sent enough ETH to pay for listing
-        require(msg.value == listPrice, "Hopefully sending the correct price");
+        console.log(msg.value);
+        console.log(price);
+        console.log(listPrice);
+        require(msg.value >= listPrice, "Hopefully sending the correct price");
         //Just sanity check
         require(price > 0, "Make sure the price isn't negative");
 
@@ -138,6 +132,10 @@ contract MultiUse is ERC721URIStorage{
 
     //This will return all the NFTs currently listed to be sold on the marketplace
     function getAllListedNFTs() public view returns (ListedToken[] memory) {
+        // -------------------------------------------------------------------
+        // New Added
+        // remove this unneccessary counts using array.push()
+        // -------------------------------------------------------------------
         uint nftCount = _tokenIds.current();
         ListedToken[] memory tokens = new ListedToken[](nftCount);
         uint currentIndex = 0;
@@ -183,6 +181,11 @@ contract MultiUse is ERC721URIStorage{
         uint itemCount = 0;
         uint currentIndex = 0;
         uint currentId;
+
+        // -------------------------------------------------------------------
+            // New Added
+            // remove this unneccessary counts
+        // -------------------------------------------------------------------
         //Important to get a count of all the NFTs that belong to the user before we can make an array for them
         for(uint i=0; i < totalItemCount; i++)
         {
@@ -204,31 +207,66 @@ contract MultiUse is ERC721URIStorage{
         return items;
     }
 
+    function changeListing(uint256 tokenId, bool action) public payable {
+        require(_owners[tokenId][msg.sender],"You are not the owner!");
+        require(_ownersArray[tokenId].length == 1, "There are multiple owners, This can't be done!");
+        require(idToListedToken[tokenId]._isSoulBound == false, "SoulBound NFT can't be listed!");
+
+        if(idToListedToken[tokenId].currentlyListed == true && action == true){
+            revert("NFT is already listed!");
+        }
+        if(idToListedToken[tokenId].currentlyListed == false && action == false){
+            revert("NFT is already unlisted!");
+        }
+
+        idToListedToken[tokenId].currentlyListed = action;
+
+    }
+
     function executeSale(uint256 tokenId) public payable {
+        require(!idToListedToken[tokenId]._isSoulBound, "This NFT is soulbound, Thu can't be Sell!");
         uint price = idToListedToken[tokenId].price;
-        require(msg.value == price, "Please submit the asking price in order to complete the purchase");
+        require(msg.value >= price, "Please submit the asking price in order to complete the purchase");
         require(idToListedToken[tokenId].currentlyListed, "This NFT is not Listed For Sell!");
-        
+        require(_ownersArray[tokenId].length == 1, "There are multiple owners, This can't be done!");
         
         // address seller = idToListedToken[tokenId].seller
+        // address prevOwner = _ownersArray[tokenId][0];
 
-        address payable mainOwner = payable(_ownersArray[tokenId][0]);
+        // -------------------------------------------------------------------
+        // New Added
+        if(msg.sender == _ownersArray[tokenId][0]){
+            revert("You are the owner!");
+        }
+        // -------------------------------------------------------------------
+
+        // getting old and new owners
+        address payable oldOwner = payable(_ownersArray[tokenId][0]);
+        
+        // address payable newOwner = payable(msg.sender);
         // address payable mainOwner = payable(mainOw);
 
         //update the details of the token
-        idToListedToken[tokenId].currentlyListed = true;
-        idToListedToken[tokenId].seller = payable(msg.sender);
+        // idToListedToken[tokenId].currentlyListed = true;
+        // idToListedToken[tokenId].seller = payable(msg.sender);
         _itemsSold.increment();
 
         //Actually transfer the token to the new owner
-        _transfer(address(this), msg.sender, tokenId);
+        _transfer(oldOwner, msg.sender, tokenId);
         //approve the marketplace to sell NFTs on your behalf
-        approve(address(this), tokenId);
+
+        _owners[tokenId][_ownersArray[tokenId][0]] = false;
+        _owners[tokenId][msg.sender] = true;
+
+        _ownersArray[tokenId][0] = msg.sender;
+
+
+        // approve(msg.sender, tokenId);
 
         //Transfer the listing fee to the marketplace creator
         payable(owner).transfer(listPrice);
         //Transfer the proceeds from the sale to the seller of the NFT
-        payable(mainOwner).transfer(msg.value);
+        payable(oldOwner).transfer(price);
     }
 
 

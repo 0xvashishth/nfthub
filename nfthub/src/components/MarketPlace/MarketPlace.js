@@ -1,5 +1,6 @@
 import NFTTile from "./NFTTile";
-import NFTHub from "../../contracts/NFTHub.json";
+// import NFTHub from "../../contracts/NFTHub.json";
+import NH from "../../contracts/NH.json";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { CenterLoader as Loader } from "../Loader/LoaderDNA"
@@ -28,9 +29,9 @@ export default function MarketPlace() {
     const ethers = require("ethers");
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    let contract = new ethers.Contract(NFTHub.address, NFTHub.abi, signer);
+    let contract = new ethers.Contract(NH.address, NH.abi, signer);
     let transaction = await contract.getAllNFTs();
-
+    console.log("Transaction", transaction);
     const items = await Promise.all(
       transaction.map(async (i) => {
         const tokenURI = await contract.tokenURI(i.tokenId);
@@ -49,8 +50,8 @@ export default function MarketPlace() {
         let item = {
           price,
           tokenId: i.tokenId.toNumber(),
-          seller: i.seller,
-          owner: i.owner,
+          // seller: i.seller,
+          // owner: i.owner,
           image: meta.image,
           name: meta.name,
           description: meta.description,
