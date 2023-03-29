@@ -161,7 +161,7 @@ export default function NFTPage() {
   }, [])
 
   return (
-    <div className="row container m-4 d-flex mx-auto border border-info p-2" style={{display:"flex",justifyContent:"center"}}>
+    <div className="row container m-4 d-flex mx-auto border form border-info p-2" style={{display:"flex",justifyContent:"center",borderRadius:"10px"}}>
       {displayData}
       <Toaster position="bottom-center" reverseOrder={false} />
     </div>
