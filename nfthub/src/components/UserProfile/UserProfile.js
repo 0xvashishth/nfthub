@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import NFTTile from "../MarketPlace/NFTTile";
 import NFTHub from "../../contracts/NFTHub.json";
+import NH from "../../contracts/NH.json";
 import axios from "axios";
 import { useState
     // , useEffect 
@@ -23,7 +24,7 @@ export default function UserProfile () {
         const addr = await signer.getAddress();
 
         //Pull the deployed contract instance
-        let contract = new ethers.Contract(NFTHub.address, NFTHub.abi, signer)
+        let contract = new ethers.Contract(NH.address, NH.abi, signer)
 
         //create an NFT Token
         let transaction = await contract.getMyNFTs()
