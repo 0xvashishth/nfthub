@@ -9,6 +9,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default function NFTPage() {
   const [itemData, setItemData] = useState({});
+  const [addressForAuthority, setAddressForAuthority] = useState("");
   // const [currentAccountAddress] = useGlobalState("currentAccountAddress");
 
   const ethers = require("ethers");
@@ -18,7 +19,7 @@ export default function NFTPage() {
   // const [message, updateMessage] = useState("");
   const [currAccount] = useState(new ethers.providers.Web3Provider(window.ethereum).getSigner());
   const [displayData, setDisplayData] = useState(<Loader />);
-  // const [buyButton, setBuyButton] = useState("");
+  
 
 
   async function buyNFT(itemData) {
@@ -64,6 +65,12 @@ export default function NFTPage() {
       console.log(e)
     }
   }
+
+  async function verifyOwner(){
+    console.log(addressForAuthority)
+  }
+
+
 
   async function getNFTData() {
 
@@ -139,6 +146,12 @@ export default function NFTPage() {
           <div>
             {buyButton}
           </div>
+          {/* <div className="form-group mt-4">
+            <input type="text" value={addressForAuthority} onChange={(e) => changeAddress(e)} />
+            <div>
+              <button className="btn btn-outline-warning mt-3" onClick={verifyOwner}>Verify Owner</button>
+            </div>
+          </div> */}
         </div>
       </>
     );
@@ -152,7 +165,10 @@ export default function NFTPage() {
   }
 
 
-
+  function changeAddress(e){
+    setAddressForAuthority(e.target.value);
+    console.log(e.target.value)
+  }
 
   // if (!dataFetched) getNFTData(tokenId);
 
