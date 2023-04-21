@@ -38,7 +38,7 @@ const NavBar = (props) => {
 
   return (
     // <div className="m-1" style={{ backgroundColor: "none" }}>
-    <nav className="p-2 navbar navbar-expand-lg navbar-light bg-gradient ">
+    <nav className="p-2 m-1 rounded navbar navbar-expand-lg navbar-light bg-gradient ">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           📢 NFTHUB
