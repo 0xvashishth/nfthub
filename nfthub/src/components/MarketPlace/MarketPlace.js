@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { CenterLoader as Loader } from "../Loader/LoaderDNA"
 // import $ from "jquery";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function MarketPlace() {
 
@@ -25,10 +26,16 @@ export default function MarketPlace() {
   const [data, updateData] = useState(sampleData);
 
   async function getAllNFTs() {
-    // console.log("Inside Get All NFTs");
     const ethers = require("ethers");
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
+    const signer =  provider.getSigner();
+
+    await provider.getNetwork().then((e)=>{
+      if(e.name !== "maticmum"){
+        toast.loading("Please switch to Mumbai Matic Network as the marketplace only supporting Mumbai Matic Network :)");
+      }
+    })
+    
     let contract = new ethers.Contract(NH.address, NH.abi, signer);
     let transaction = await contract.getAllNFTs();
     console.log("Transaction", transaction);
@@ -105,6 +112,7 @@ export default function MarketPlace() {
           })}
         </div>
       </div>
+      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
 }
