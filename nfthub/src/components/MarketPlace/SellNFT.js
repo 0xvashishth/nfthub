@@ -11,6 +11,7 @@ import { getDarkMode } from "../../configuration/misc";
 // import { useParams , useLocation } from "react-router-dom";
 // import axios from "axios";
 // import {CenterLoader as Loader} from "../Loader/LoaderDNA"
+import './SellNFT.css'
 
 export default function SellNFT() {
   const darkMode = getDarkMode();
@@ -191,12 +192,12 @@ export default function SellNFT() {
         <h3 className="p-3 rounded">Mint NFT</h3>
       </div>
       <div className={`border mt-3 border-white rounded m-auto MintDiv mb-4 form`}>
-        <form className={`p-3 ${darkMode ? "" : "lightThemeSellNft"}`}>
+        <form className={`p-3 ${darkMode ? "" : "lightThemeSellNft"} bg-blurrr`}>
           <fieldset>
             {/* <legend className="p-1">Mint Your NFT</legend>
               <hr /> */}
             <div className="form-group ">
-              <label className={`form-label mt-4 ${darkMode ? "" : "lightThemeSellNftLabel"}`} htmlFor="name">
+              <label className={`form-label mt-4 ${darkMode ? "" : "lightThemeSellNftLabel"} tc`} htmlFor="name">
                 NFT Name
               </label>
               <input
@@ -215,7 +216,7 @@ export default function SellNFT() {
               </small>
             </div>
             <div className="form-group">
-              <label htmlFor="description" className={`form-label mt-4 ${darkMode ? "" : "lightThemeSellNftLabel"}`}>
+              <label htmlFor="description" className={`form-label mt-4 ${darkMode ? "" : "lightThemeSellNftLabel"} tc`}>
                 NFT Description
               </label>
               <textarea
@@ -244,7 +245,7 @@ export default function SellNFT() {
                 </select>
               </div> */}
             <div className="form-group">
-              <label className={`form-label mt-4 ${darkMode ? "" : "lightThemeSellNftLabel"}`} htmlFor="price">
+              <label className={`form-label mt-4 ${darkMode ? "" : "lightThemeSellNftLabel"} tc`} htmlFor="price">
                 Price (in ETH)
               </label>
               <input
@@ -304,7 +305,7 @@ export default function SellNFT() {
 
 
               <div className="form-group mt-4">
-                <label className={`form-label ${darkMode ? "" : "lightThemeSellNftLabel"}`} htmlFor="toAddr">
+                <label className={`form-label ${darkMode ? "" : "lightThemeSellNftLabel"} tc`} htmlFor="toAddr">
                   To whom you want to transfer this NFT?
                 </label>
                 <input className={`form-control ${darkMode ? "" : "lightThemeInput"}`} type="text" id="toAddr" onChange={(e) =>
@@ -316,7 +317,7 @@ export default function SellNFT() {
                 </small>
               </div>
               <div className="form-group mt-4">
-                <label className={`form-label ${darkMode ? "" : "lightThemeSellNftLabel"}`} htmlFor="image">
+                <label className={`form-label ${darkMode ? "" : "lightThemeSellNftLabel"} tc`} htmlFor="image">
                   Upload Image
                 </label>
                 <input
@@ -326,7 +327,7 @@ export default function SellNFT() {
                 ></input>
               </div>
             </fieldset>
-            <button onClick={listNFT} className={`mt-3 form-control btn  ${darkMode ? "btn-outline-warning" : "btn-info"}`}>
+            <button onClick={listNFT} className={`mt-3 form-control btn  ${darkMode ? "btn-warning" : "btn-info"}`}>
               List NFT
             </button>
           </fieldset>
