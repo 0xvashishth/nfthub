@@ -63,8 +63,8 @@ export default function NFTPage() {
     const toastId = toast.loading("Checking Ownership... 🤓");
     console.log("Checking ownership of : ", addressForAuthority);
     var addrToCheck = addressForAuthority
-    if(flag){
-      addr = addr.slice(0, -6); 
+    if (flag) {
+      addr = addr.slice(0, -6);
       addr = addr.slice(9);
       addrToCheck = addr
       console.log(addr)
@@ -108,7 +108,7 @@ export default function NFTPage() {
       setScan(false);
       verifyOwner(data?.text, true);
       console.log(data.text)
-    }else{
+    } else {
       toast.error("Something went wrong...🤐");
     }
   }
@@ -206,13 +206,13 @@ export default function NFTPage() {
       </div>
       <div className="form-group container text-center mt-4 mb-4 mx-auto m-auto row">
         <div className="col-10">
-        <input
-          type="text"
-          className="form-control p-6"
-          value={addressForAuthority}
-          onChange={(e) => changeAddress(e)}
-          placeholder="Enter Wallet Address To Verify This NFT Ownership"
-        />
+          <input
+            type="text"
+            className="form-control p-6"
+            value={addressForAuthority}
+            onChange={(e) => changeAddress(e)}
+            placeholder="Enter Wallet Address To Verify This NFT Ownership"
+          />
         </div>
         <div className="col-2">
           <button
@@ -236,18 +236,18 @@ export default function NFTPage() {
           :
           <>
             <QrReader
-            onResult={(result, error) => {
-              if (!!result) {
-                handleScan(result);
-              }
+              onResult={(result, error) => {
+                if (!!result) {
+                  handleScan(result);
+                }
 
-              // if (!!error) {
-              //   toast.error('Error while scanning QR code...')
-              //   console.info("ERROR", error);
-              // }
+                // if (!!error) {
+                //   toast.error('Error while scanning QR code...')
+                //   console.info("ERROR", error);
+                // }
 
-            }}
-            className='w-25 h-20 mx-auto'
+              }}
+              className='w-25 h-20 mx-auto'
             />
             <center><button className='btn btn-outline-danger w-25' onClick={() => setScan(false)}>Cancel</button></center>
           </>

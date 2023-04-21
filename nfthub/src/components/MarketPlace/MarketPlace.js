@@ -28,14 +28,14 @@ export default function MarketPlace() {
   async function getAllNFTs() {
     const ethers = require("ethers");
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer =  provider.getSigner();
+    const signer = provider.getSigner();
 
-    await provider.getNetwork().then((e)=>{
-      if(e.name !== "maticmum"){
+    await provider.getNetwork().then((e) => {
+      if (e.name !== "maticmum") {
         toast.loading("Please switch to Mumbai Matic Network as the marketplace only supporting Mumbai Matic Network :)");
       }
     })
-    
+
     let contract = new ethers.Contract(NH.address, NH.abi, signer);
     let transaction = await contract.getAllNFTs();
     console.log("Transaction", transaction);

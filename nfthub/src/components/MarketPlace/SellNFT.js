@@ -84,7 +84,7 @@ export default function SellNFT() {
     const toastId = toast.loading("Started Listing NFT.. 🤩");
     e.preventDefault();
     var { name, description, price, to, isSoulBound, iscurrentListed } = formParams;
-    if(!price || !name || !description){
+    if (!price || !name || !description) {
       toast.error("Please Fill All The Fields.. ⚒",
         {
           id: toastId,
@@ -93,19 +93,19 @@ export default function SellNFT() {
       return;
     }
     var toArray = [];
-    if(to === ""){
+    if (to === "") {
       toArray[0] = currentAccountAddress;
-    }else{
+    } else {
       to = to.replace(/\s/g, "");
       toArray = to.split(",");
       console.log(toArray)
-      if(toArray.length < 1){
+      if (toArray.length < 1) {
         toast.error("Please Provide Address Correctly or refresh your browser.. ⚒",
-        {
-          id: toastId,
-        }
-      );
-      return;
+          {
+            id: toastId,
+          }
+        );
+        return;
       }
     }
     if (iscurrentListed) {
@@ -141,19 +141,19 @@ export default function SellNFT() {
           id: toastId,
         }
       );
-      
 
-    //Pull the deployed contract instance
-    let contract = new ethers.Contract(NH.address, NH.abi, signer);
-    //massage the params to be sent to the create NFT request
-    const price = ethers.utils.parseUnits(formParams.price, "ether");
-    console.log(price)
-    toast.loading("Preparing Data From BlockChain.. 🎉",
-      {
-        id: toastId,
-      }
-    );
-    let listingPrice = await contract.getListPrice();
+
+      //Pull the deployed contract instance
+      let contract = new ethers.Contract(NH.address, NH.abi, signer);
+      //massage the params to be sent to the create NFT request
+      const price = ethers.utils.parseUnits(formParams.price, "ether");
+      console.log(price)
+      toast.loading("Preparing Data From BlockChain.. 🎉",
+        {
+          id: toastId,
+        }
+      );
+      let listingPrice = await contract.getListPrice();
 
       listingPrice = listingPrice.toString();
       //actually create the NFT
@@ -274,7 +274,7 @@ export default function SellNFT() {
                   htmlFor="flexSwitchCheckDefault"
                 >
                   SoulBound NFT
-                </label><br/>
+                </label><br />
                 <small id="flexSwitchCheckDefault1" className="form-text text-muted">
                   You can't list this NFT for sell in future.
                 </small>
@@ -312,8 +312,8 @@ export default function SellNFT() {
                 }
                   value={formParams.to} />
                 <small id="toAddr" className="form-text text-muted">
-                If you want this NFT for you, then leave it blank..
-              </small>
+                  If you want this NFT for you, then leave it blank..
+                </small>
               </div>
               <div className="form-group mt-4">
                 <label className={`form-label ${darkMode ? "" : "lightThemeSellNftLabel"}`} htmlFor="image">

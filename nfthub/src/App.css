@@ -85,7 +85,9 @@ input::placeholder {
   background: radial-gradient(circle, rgba(178, 200, 236, 1) 0%, rgba(252, 196, 84, 1) 0%, rgba(164, 187, 224, 1) 0%, rgba(255, 255, 255, 1) 100%);
   color: black;
 }
-.lightThemeBlockExplorer th, .lightThemeBlockExplorer td {
+
+.lightThemeBlockExplorer th,
+.lightThemeBlockExplorer td {
   font-weight: 600;
   color: black;
 }
@@ -95,7 +97,8 @@ input::placeholder {
   color: rgb(79, 79, 93);
 }
 
-.lightThemeBlockExplorer td small a, .lightThemeBlockExplorer td p a{
+.lightThemeBlockExplorer td small a,
+.lightThemeBlockExplorer td p a {
   font-weight: 500;
   color: rgb(0, 0, 254);
 }
@@ -112,7 +115,6 @@ input::placeholder {
   /* background-color: var(--background-color); */
   color: var(--text-color);
 }
-
 
 
 .box1 {
