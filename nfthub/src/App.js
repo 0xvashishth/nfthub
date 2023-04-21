@@ -27,7 +27,7 @@ function App() {
     <div className="App">
       <NavBar />
       <RouterProvider router={router} />
-      <button style={{
+      {/* <button style={{
           position: 'fixed',
           bottom: '10%',
           right: '20px',
@@ -35,7 +35,7 @@ function App() {
         }}
         onClick={() => setDarkMode(!darkMode,setMode)}>
               {darkMode ? <FontAwesomeIcon icon={faSun}  style={{color: "#ffffff"}} spin="spin"/> : <FontAwesomeIcon icon={faMoon} spin="spin" />}
-            </button>
+            </button> */}
     </div>
   );
 }
