@@ -15,7 +15,9 @@ With NFTHUB, you hvae the power to create and collet unique digital assets in th
 
 Minting NFTs on NFTHUB is a breeze 😌🎉. Our intuitive interface allows you to easily upload your digital creations, customize type of NFT, and other settings, and mint your NFTs with just a few clicks💡✨. Once minted, your NFTs are showcased in our vibrant marketplace🛍️, where collectors from around the world can discover and purchase your creations.
 
-[Landing page screenshot]
+
+![image](https://user-images.githubusercontent.com/78534043/233703690-a757d63a-6e4e-4325-ab01-4dde96b1dea6.png)
+
 
 But NFTHUB isn't just about minting and buying NFTs - it's also about exploring the blockchain ecosystem. Our built-in block explorer provides real-time insights 💹 into various blockchains, including Ethereum, Polygon, Sepolia, and more. You can easily search🔍 for specific blocks, view transaction details, and gain a deep understanding of the blockchain's inner workings.
 
@@ -43,7 +45,6 @@ Get started now and unlock the limitless possibilities of NFTHUB! 💫🚀
 ![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 ![](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
 
 
 
