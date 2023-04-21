@@ -76,7 +76,7 @@ const NavBar = (props) => {
               >
                 More 🤟🏼
               </a>
-              <div className="dropdown-menu">
+              <div className="dropdown-menu bg-gradient-drawer bg-light">
                 <a className="dropdown-item" href="/swap">
                   🚀 Swap
                 </a>
