@@ -1,5 +1,5 @@
 {
-  "name": "nfthub",
+  "name": "NFTHUB",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -25,6 +25,7 @@
     "react-hooks-global-state": "^2.1.0",
     "react-hot-toast": "^2.4.0",
     "react-loader-spinner": "^5.3.4",
+    "react-qr-reader": "^3.0.0-beta-1",
     "react-router-dom": "^6.4.5",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",

@@ -3,8 +3,10 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useGlobalState } from "../../configuration/settings";
 import $ from 'jquery';
+import { getDarkMode, showStr, truncate } from '../../configuration/misc';
 
 function InitialBlocksTransactions() {
+  const darkMode = getDarkMode();
   const [alchemy] = useGlobalState("globalAlchemyInstance");
   const [currentChain] = useGlobalState("globalChain");
   const loader = <img alt="loaderimg" src="https://user-images.githubusercontent.com/89864614/213781640-e7232dcc-6ff3-45f8-8c5e-e6f8181fb770.gif" width="20px" />
@@ -66,9 +68,9 @@ function InitialBlocksTransactions() {
               </p>
             </td>
             <td>
-              <small><a href="#link">From: {transactions[i].from}</a></small>
+              <small><a href="#link">From: {showStr(transactions[i].from)}</a></small>
               <br />
-              <small><a href="#link">To: {transactions[i].to}</a></small>
+              <small><a href="#link">To: {showStr(transactions[i].to)}</a></small>
               <br />
               <small className="form-text">Transaction value: {txValue / 1000000000} Gwei</small>
             </td>
@@ -90,7 +92,7 @@ function InitialBlocksTransactions() {
         // console.log("From web3", web3.getBlockInformation(result.number));
         // console.log(new Date(timestamp).toLocaleTimeString());
         var blockLink = "/explorer/block?bk=" + result.number
-        block_details[i] = <tr className="table-active">
+        block_details[i] = <tr className={`table-active ${darkMode ? "" : "hover-3"}`}>
           <td>
             <p>
               Block <a href={blockLink}>{result.number}</a>
@@ -99,7 +101,7 @@ function InitialBlocksTransactions() {
             </p>
           </td>
           <td>
-            <small><a href="#link">{result.miner}</a></small>
+            <small><a href="#link">{showStr(result.miner)}</a></small>
             <br />
             <small className="form-text ">Gas Used 🔥: {strgas / 1000000000} Gwei</small>
             <br />
@@ -157,9 +159,9 @@ function InitialBlocksTransactions() {
             <button className="btn btn-outline-info" onClick={getBlockNumber}>Refresh</button> &nbsp; &nbsp; {btnLoader}
           </div>
         </div>
-        <div className="row m-3 justify-content-around mt-4">
-          <div className="col-md-5 border border-light rounded">
-            <table className="table table-hover">
+        <div className="row p-lg-0 p-md-5 p-sm-3 p-2 mx-auto w-100 justify-content-around mt-4">
+          <div className={`col-lg-5 col-12 border border-light rounded ${darkMode ? "" : "lightThemeBlockExplorer"}`}>
+            <table className={`table ${darkMode ? "table-hover" : ""}`}>
               <thead>
                 <tr>
                   <th scope="col">Latest Blocks</th>
@@ -171,8 +173,8 @@ function InitialBlocksTransactions() {
               </tbody>
             </table>
           </div>
-          <div className="col-md-5 border border-light rounded">
-            <table className="table table-hover">
+          <div className={`col-lg-5 col-12 my-lg-0 my-5 border border-light rounded ${darkMode ? "" : "lightThemeBlockExplorer"}`}>
+            <table className={`table ${darkMode ? "table-hover" : ""}`}>
               <thead>
                 <tr>
                   <th scope="col">Latest-Transactions</th>

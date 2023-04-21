@@ -83,10 +83,9 @@ export default function Erc20Indexer() {
   return (
     <>
       <div className="container mt-4 middle">
-        <h3 className="justify-content-center text-center">ERC-20 Indexer</h3>
+        <h3 className="justify-content-center text-center fs-2">ERC-20 Indexer</h3>
         <div
-          className="border border-white rounded p-4 form"
-          style={{ width: "40rem" }}
+          className="border mt-3 border-white rounded p-4 form indexer-form"
         >
           <span className="m-1 d-flex">On {currentChain} 🗼</span>
           <hr />

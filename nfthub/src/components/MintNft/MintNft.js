@@ -10,7 +10,7 @@ const MintNft = (props) => {
         <div className="">
           <form>
             <fieldset>
-              <legend className="p-1">Mint Your NFT</legend>
+              <legend className="p-1 fs-2">Mint Your NFT</legend>
               <hr />
               <div className="form-group">
                 <label htmlFor="exampleInputEmail1" className="form-label mt-4">Create NFT</label>

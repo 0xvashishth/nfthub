@@ -1,5 +1,5 @@
 import NFTTile from "./NFTTile";
-// import NFTHub from "../../contracts/NFTHub.json";
+// import NFTHUB from "../../contracts/NFTHUB.json";
 import NH from "../../contracts/NH.json";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -70,7 +70,7 @@ export default function MarketPlace() {
   return (
     <div className="">
       <div className="mt-3 middle">
-        <h3 className="p-3 rounded">NFT MarketPlace</h3>
+        <h3 className="p-3 rounded fs-2">NFT MarketPlace</h3>
       </div>
       {/* <div className="mt-3 d-flex">
         <select
@@ -98,8 +98,8 @@ export default function MarketPlace() {
         </select>
       </div> */}
 
-      <div className="container">
-        <div className="d-flex row">
+      <div className="mx-3 overflow-hidden">
+        <div className="d-flex row ">
           {data.length === 1 ? <Loader /> : data.map((value, index) => {
             return <NFTTile data={value} key={index}></NFTTile>;
           })}

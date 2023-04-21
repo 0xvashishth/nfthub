@@ -118,7 +118,7 @@ const Wallet = () => {
   return (
     <div className="middle d-flex justify-content-center">
       <div className="container mt-4 middle">
-        <h3 className="justify-content-center text-center">Wallet</h3>
+        <h3 className="justify-content-center text-center fs-2">Wallet</h3>
         <div
           className="border border-white rounded p-4 form"
           style={{ width: "40rem" }}

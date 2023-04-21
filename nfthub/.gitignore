@@ -6,10 +6,14 @@
 .pnp.js
 # testing
 /coverage
+/src/components/test.js
+package-lock.json
 
 # production
 /build
-
+/app
+app
+./app
 # misc
 .DS_Store
 .env.local

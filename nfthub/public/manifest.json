@@ -1,19 +1,19 @@
 {
-  "short_name": "NFTHub",
-  "name": "NFTHub With Soul Bound NFTs",
+  "short_name": "NFTHUB",
+  "name": "NFTHUB With Soul Bound NFTs",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "https://user-images.githubusercontent.com/85776968/231350888-c9afbd92-4763-4364-9597-5bf9c0ad318f.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "https://user-images.githubusercontent.com/85776968/231350888-c9afbd92-4763-4364-9597-5bf9c0ad318f.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "https://user-images.githubusercontent.com/85776968/231350888-c9afbd92-4763-4364-9597-5bf9c0ad318f.png",
       "type": "image/png",
       "sizes": "512x512"
     }

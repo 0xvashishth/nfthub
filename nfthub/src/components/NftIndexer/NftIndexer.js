@@ -1,5 +1,6 @@
+import './NftIndexer.css'
 import { useState, useEffect } from "react";
-import {CenterLoader as Loader} from "../Loader/LoaderDNA";
+import { CenterLoader as Loader } from "../Loader/LoaderDNA";
 import { useGlobalState } from "../../configuration/settings";
 
 export default function NftIndexer() {
@@ -10,7 +11,7 @@ export default function NftIndexer() {
   const [nftnftcount, setnftnftcount] = useState("");
   const [loader, setloader] = useState("");
 
-  useEffect(()=>{
+  useEffect(() => {
     setUserAddress("");
     setnftdata("");
     setnftnftcount("");
@@ -19,7 +20,7 @@ export default function NftIndexer() {
 
   async function getTokenBalance() {
     setnftnftcount("");
-    setloader(<Loader/>);
+    setloader(<Loader />);
     setnftdata("");
 
     // new approach
@@ -35,14 +36,14 @@ export default function NftIndexer() {
       // console.log(tokenData);
       var tokenaddr = `https://blockscan.com/address/${tokenData.contract.address}`;
       nftArray[i] = (
-        <div className="col h-100" key={tokenData.tokenId}>
+        <div className="h-100 text-center" key={tokenData.tokenId}>
           <div className="card">
             <a href={tokenData.media[0].gateway} target="_blank" rel="noreferrer">
-            <img
-              src={tokenData.media[0].thumbnail}
-              className="card-img-top"
-              alt={tokenData.media[0].gateway}
-            />
+              <img
+                src={tokenData.media[0].thumbnail}
+                className="h-2"
+                alt={tokenData.media[0].gateway}
+              />
             </a>
             <div className="card-body">
               <h5 className="card-title">{tokenData.title}</h5>
@@ -96,10 +97,10 @@ export default function NftIndexer() {
   return (
     <>
       <div className="container mt-4 middle">
-        <h3 className="justify-content-center text-center">NFT Indexer</h3>
+        <h3 className="justify-content-center text-center fs-2">NFT Indexer</h3>
         <div
-          className="border border-white rounded p-4 form"
-          style={{ width: "40rem" }}
+          className="border border-white rounded p-4 form indexer-form"
+
         >
           <span className="m-1 d-flex">On {currentChain} 🗼</span>
           <hr />
@@ -135,7 +136,7 @@ export default function NftIndexer() {
       </div>
       {loader}
       <div className="d-flex justify-content-center pt-3">{nftnftcount}</div>
-      <div className="row middle container m-3 row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-sm-2">
+      <div className="row mx-auto container row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-sm-2">
         {nftdata}
       </div>
     </>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useGlobalState } from "../../configuration/settings";
-import { trunc } from "../../configuration/misc";
+import { trunc, truncAddr2 as truncAddr } from "../../configuration/misc";
 import { CenterLoader as Loader } from "../Loader/LoaderDNA";
 
 export default function NftIndexer() {
@@ -58,11 +58,11 @@ export default function NftIndexer() {
 
   return (
     <>
-      <div className=" mt-4 middle">
+      <div className="container mt-4 middle">
         <h3 className="justify-content-center text-center">Transfers</h3>
         <div
-          className="border border-white form rounded p-4"
-          style={{ width: "40rem" }}
+          className="border border-white form rounded p-4 form indexer-form"
+          // style={{ width: "40rem" }}
         >
           <div className="row">
             <div className="col-6">
@@ -118,8 +118,8 @@ export default function NftIndexer() {
       {loader}
       <div className="middle">
       {hasQueried ? (
-          <div className="mt-3 container">
-          <table className="table caption-top table-responsive table-bordered table-hover border-primary align-middle">
+          <div className="mt-3 container table-responsive">
+          <table className="table caption-top table-bordered table-hover border-primary align-middle">
             <caption>Total Transactions Of {assetType} {" : "} {ercTransferCount}</caption>
             <thead>
               <tr>
@@ -135,8 +135,8 @@ export default function NftIndexer() {
               return (
                 <tr key={i}>
                 <th scope="row">{e.blockNum}</th>
-                <td>{e.from}</td>
-                <td>{e.to}</td>
+                <td>{truncAddr(e.from)}</td>
+                <td>{truncAddr(e.to)}</td>
                 <td>{trunc(e.hash)}</td>
               </tr>
               );

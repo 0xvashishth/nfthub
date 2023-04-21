@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { uploadFileToIPFS, uploadJSONToIPFS } from "../../configuration/pinata";
 // import { useLocation } from "react-router";
-// import NFTHub from "../../contracts/NFTHub.json";
+// import NFTHUB from "../../contracts/NFTHUB.json";
 import NH from "../../contracts/NH.json";
 // import { Utils } from "alchemy-sdk";
 import { useGlobalState } from "../../configuration/settings";
 import toast, { Toaster } from "react-hot-toast";
-import './SellNFT.css'
+// import './SellNFT.css'
+import { getDarkMode } from "../../configuration/misc";
 // import { useParams , useLocation } from "react-router-dom";
 // import axios from "axios";
 // import {CenterLoader as Loader} from "../Loader/LoaderDNA"
 
 export default function SellNFT() {
+  const darkMode = getDarkMode();
+
   const [currentAccountAddress] = useGlobalState("currentAccountAddress");
   const [formParams, updateFormParams] = useState({
     name: "",
@@ -183,21 +186,21 @@ export default function SellNFT() {
   }
 
   return (
-    <div className="container">
+    <div className={`my-3 container`}>
       <div className="mt-3 middle">
-        <h3 className="p-3 rounded">Mint NFT For Sell</h3>
+        <h3 className="p-3 rounded">Mint NFT</h3>
       </div>
-      <div className="border p-3 mt-3 border-white rounded m-auto MintDiv col-7 mb-4 form">
-        <form>
+      <div className={`border mt-3 border-white rounded m-auto MintDiv mb-4 form`}>
+        <form className={`p-3 ${darkMode ? "" : "lightThemeSellNft"}`}>
           <fieldset>
             {/* <legend className="p-1">Mint Your NFT</legend>
               <hr /> */}
             <div className="form-group ">
-              <label className="form-label mt-4" htmlFor="name">
+              <label className={`form-label mt-4 ${darkMode ? "" : "lightThemeSellNftLabel"}`} htmlFor="name">
                 NFT Name
               </label>
               <input
-                className="form-control"
+                className={`form-control ${darkMode ? "" : "lightThemeInput"}`}
                 id="name"
                 type="text"
                 placeholder="Axie#4563"
@@ -212,11 +215,11 @@ export default function SellNFT() {
               </small>
             </div>
             <div className="form-group">
-              <label htmlFor="description" className="form-label  mt-4">
+              <label htmlFor="description" className={`form-label mt-4 ${darkMode ? "" : "lightThemeSellNftLabel"}`}>
                 NFT Description
               </label>
               <textarea
-                className="form-control"
+                className={`form-control ${darkMode ? "" : "lightThemeInput"}`}
                 cols="40"
                 rows="5"
                 id="description"
@@ -241,11 +244,11 @@ export default function SellNFT() {
                 </select>
               </div> */}
             <div className="form-group">
-              <label className="form-label mt-4" htmlFor="price">
+              <label className={`form-label mt-4 ${darkMode ? "" : "lightThemeSellNftLabel"}`} htmlFor="price">
                 Price (in ETH)
               </label>
               <input
-                className="form-control"
+                className={`form-control ${darkMode ? "" : "lightThemeInput"}`}
                 type="number"
                 placeholder="Min 0.01 ETH"
                 step="0.01"
@@ -258,7 +261,7 @@ export default function SellNFT() {
             <fieldset className="form-group mt-4 mb-3">
               <div className="form-check form-switch mb-3">
                 <input
-                  className="form-check-input"
+                  className={`form-check-input ${darkMode ? "" : "lightThemeInput"}`}
                   type="checkbox"
                   id="flexSwitchCheckDefault"
                   onChange={(e) =>
@@ -271,12 +274,15 @@ export default function SellNFT() {
                   htmlFor="flexSwitchCheckDefault"
                 >
                   SoulBound NFT
-                </label>
+                </label><br/>
+                <small id="flexSwitchCheckDefault1" className="form-text text-muted">
+                  You can't list this NFT for sell in future.
+                </small>
               </div>
 
               <div className="form-check form-switch mb-3">
                 <input
-                  className="form-check-input"
+                  className={`form-check-input ${darkMode ? "" : "lightThemeInput"}`}
                   type="checkbox"
                   id="flexSwitchCheckDefault1"
                   onChange={(e) =>
@@ -298,26 +304,29 @@ export default function SellNFT() {
 
 
               <div className="form-group mt-4">
-                <label className="form-label " htmlFor="toAddr">
+                <label className={`form-label ${darkMode ? "" : "lightThemeSellNftLabel"}`} htmlFor="toAddr">
                   To whom you want to transfer this NFT?
                 </label>
-                <input className="form-control" type="text" id="toAddr" onChange={(e) =>
+                <input className={`form-control ${darkMode ? "" : "lightThemeInput"}`} type="text" id="toAddr" onChange={(e) =>
                   updateFormParams({ ...formParams, to: e.target.value })
                 }
-                  value={formParams.to} placeholder="If you want this NFT for you, then leave it blank.." />
+                  value={formParams.to} />
+                <small id="toAddr" className="form-text text-muted">
+                If you want this NFT for you, then leave it blank..
+              </small>
               </div>
               <div className="form-group mt-4">
-                <label className="form-label " htmlFor="image">
+                <label className={`form-label ${darkMode ? "" : "lightThemeSellNftLabel"}`} htmlFor="image">
                   Upload Image
                 </label>
                 <input
-                  className="form-control"
+                  className={`form-control ${darkMode ? "" : "lightThemeInput"}`}
                   type={"file"}
                   onChange={OnChangeFile}
                 ></input>
               </div>
             </fieldset>
-            <button onClick={listNFT} className="mt-3 btn btn-warning">
+            <button onClick={listNFT} className={`mt-3 form-control btn  ${darkMode ? "btn-outline-warning" : "btn-info"}`}>
               List NFT
             </button>
           </fieldset>

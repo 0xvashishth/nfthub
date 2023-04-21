@@ -6,7 +6,11 @@ import { setAccount } from "../../configuration/settings";
 import { truncAddr } from "../../configuration/misc";
 
 const NavBar = (props) => {
-  const [connectEmoji, setconnectEmoji] = useState(<button type="button" class="btn btn-danger btn-sm px-4">🔌 Connect</button>);
+  const [connectEmoji, setconnectEmoji] = useState(
+    <button type="button" className="btn btn-danger btn-sm px-4">
+      🔌 Connect
+    </button>
+  );
   const [isLoggedin, setisLoggedin] = useState(false);
 
   const connect = () => {
@@ -20,15 +24,15 @@ const NavBar = (props) => {
     } else {
       alert("install metamask extension!!");
     }
-  }
+  };
 
   useEffect(() => {
     connect();
-    $("#chainSelection").val(localStorage.getItem("globalChain"))
+    $("#chainSelection").val(localStorage.getItem("globalChain"));
   }, []);
 
   function changeChain(e) {
-    console.log(e.target.value)
+    console.log(e.target.value);
     setChain(e.target.value);
   }
 
@@ -37,7 +41,7 @@ const NavBar = (props) => {
     <nav className="p-2 navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          📢 NFTHub
+          📢 NFTHUB
         </a>
         <div className="collapse navbar-collapse" id="navbarColor03">
           <ul className="navbar-nav mx-auto">
@@ -76,6 +80,9 @@ const NavBar = (props) => {
                 <a className="dropdown-item" href="/swap">
                   🚀 Swap
                 </a>
+                <a className="dropdown-item" href="/ticket/create">
+                  🎫 NFT Ticket
+                </a>
                 <a className="dropdown-item" href="/transfers">
                   💸 Transfers
                 </a>
@@ -95,31 +102,35 @@ const NavBar = (props) => {
               </div>
             </li>
           </ul>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <select
+                className="form-select me-sm-2"
+                id="chainSelection"
+                onChange={changeChain}
+              >
+                <option value="MATIC_MUMBAI">MATIC_MUMBAI</option>
+                <option value="MATIC_MAINNET">MATIC_MAINNET</option>
+                <option value="ETH_GOERLI">ETH_GOERLI</option>
+                <option value="ETH_MAINNET">ETH_MAINNET</option>
+              </select>
+            </li>
+          </ul>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              {isLoggedin ? (
+                <a className="nav-link connectEmoji" href="/user">
+                  {connectEmoji}
+                </a>
+              ) : (
+                <a className="nav-link connectEmoji" onClick={connect}>
+                  {connectEmoji}
+                </a>
+              )}
+            </li>
+          </ul>
         </div>
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <select className="form-select me-sm-2" id="chainSelection" onChange={changeChain}>
-              <option value="MATIC_MUMBAI">MATIC_MUMBAI</option>
-              <option value="MATIC_MAINNET">MATIC_MAINNET</option>
-              <option value="ETH_GOERLI">ETH_GOERLI</option>
-              <option value="ETH_MAINNET">ETH_MAINNET</option>
-            </select>
-          </li>
-        </ul>
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            {isLoggedin ? (
-              <a className="nav-link connectEmoji" href="/user">
-                {connectEmoji}
-              </a>
-            ) : (
-              <a className="nav-link connectEmoji" onClick={connect}>
-                {connectEmoji}
-              </a>
-            )}
 
-          </li>
-        </ul>
         <button
           className="navbar-toggler"
           type="button"

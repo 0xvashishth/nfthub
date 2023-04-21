@@ -1,6 +1,5 @@
-
-html{
-  background:url('../public/assets/background-sober.jpg') no-repeat center center fixed;
+html {
+  background: url('../public/assets/background-sober.jpg') no-repeat center center fixed;
   /* background:url('../public/assets/giphy.gif') no-repeat center center fixed; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -9,18 +8,186 @@ html{
   /* background: rgb(2,0,36); */
   /* background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%,rgba(0,212,255,1) 100%); */
 
-/*   filter: blur(8px); */
-/*   -webkit-filter: blur(8px); */
+  /*   filter: blur(8px); */
+  /*   -webkit-filter: blur(8px); */
 }
 
-.App{
+.form-label {
+  color: white;
+}
+
+.App {
   background: none;
 }
 
-input::placeholder{
-  color: white!important;
+input::placeholder {
+  color: white !important;
 }
 
-.text-muted{
-  color:#424242!important;
+.text-muted {
+  color: #424242 !important;
+}
+
+
+/* Themes */
+
+/* Styles for light theme */
+.lightTheme {
+  --background-color: #fff;
+  --text-color: #333;
+  /* --background: url('../public/assets/lightbg.jpg') no-repeat center center fixed;
+  background: var(--background);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100%; */
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.lightThemeInput {
+  border: #424242 1px solid;
+  background: rgb(196, 198, 201);
+  background: linear-gradient(45deg, rgba(196, 198, 201, 1) 100%, rgba(255, 255, 255, 1) 100%);
+  color: black;
+}
+
+.lightThemeInput:focus {
+  border: #0c40de 2px solid;
+  background: rgb(178, 200, 236);
+  background: radial-gradient(circle, rgba(178, 200, 236, 1) 0%, rgba(252, 196, 84, 1) 0%, rgba(164, 187, 224, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  color: black;
+}
+
+.lightThemeSellNft {
+  /* --background-color: #adf29f; */
+  --text-color: #333;
+  /* background-color: var(--background-color); */
+  background: rgb(142, 142, 148);
+  background: radial-gradient(circle, rgba(142, 142, 148, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  color: var(--text-color);
+}
+
+.lightThemeSellNftLabel {
+  color: black;
+}
+
+.lightThemeBlockExplorer {
+  background: rgb(178, 200, 236);
+  background: radial-gradient(circle, rgba(178, 200, 236, 1) 0%, rgba(252, 196, 84, 1) 0%, rgba(164, 187, 224, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  color: black;
+}
+.lightThemeBlockExplorer th, .lightThemeBlockExplorer td {
+  font-weight: 600;
+  color: black;
+}
+
+.lightThemeBlockExplorer td small {
+  font-weight: 200;
+  color: rgb(79, 79, 93);
+}
+
+.lightThemeBlockExplorer td small a, .lightThemeBlockExplorer td p a{
+  font-weight: 500;
+  color: rgb(0, 0, 254);
+}
+
+.lightThemeBlockExplorer tr:hover {
+  background-color: rgb(182, 248, 214);
+}
+
+
+/* Styles for dark theme */
+.darkTheme {
+  /* --background-color: #333; */
+  --text-color: #fff;
+  /* background-color: var(--background-color); */
+  color: var(--text-color);
+}
+
+
+
+.box1 {
+  /* font-size: 24px; */
+  border: 10px solid black;
+  padding: 2rem 1rem;
+  min-height: 3em;
+  resize: both;
+  border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cstyle%3Epath%7Banimation:stroke 5s infinite linear%3B%7D%40keyframes stroke%7Bto%7Bstroke-dashoffset:776%3B%7D%7D%3C/style%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232d3561' /%3E%3Cstop offset='25%25' stop-color='%23c05c7e' /%3E%3Cstop offset='50%25' stop-color='%23f3826f' /%3E%3Cstop offset='100%25' stop-color='%23ffb961' /%3E%3C/linearGradient%3E %3Cpath d='M1.5 1.5 l97 0l0 97l-97 0 l0 -97' stroke-linecap='square' stroke='url(%23g)' stroke-width='3' stroke-dasharray='388'/%3E %3C/svg%3E") 1;
+}
+
+
+/* stylish border */
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 90deg;
+  inherits: true;
+}
+
+@property --gradX {
+  syntax: '<percentage>';
+  initial-value: 50%;
+  inherits: true;
+}
+
+@property --gradY {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: true;
+}
+
+:root {
+  --d: 2500ms;
+  --angle: 90deg;
+  --gradX: 100%;
+  --gradY: 50%;
+  --c1: rgba(168, 239, 255, 1);
+  --c2: rgba(168, 239, 255, 0.1);
+}
+
+.box {
+  font-size: 1vw;
+  border: 0.35rem solid;
+  padding: 3vw;
+  border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
+  animation: borderRotate var(--d) linear infinite forwards;
+}
+
+.box:nth-child(2) {
+  border-image: radial-gradient(ellipse at var(--gradX) var(--gradY), var(--c1), var(--c1) 10%, var(--c2) 40%) 30;
+  animation: borderRadial var(--d) linear infinite forwards;
+}
+
+@keyframes borderRotate {
+  100% {
+    --angle: 420deg;
+  }
+}
+
+@keyframes borderRadial {
+  20% {
+    --gradX: 100%;
+    --gradY: 50%;
+  }
+
+  40% {
+    --gradX: 100%;
+    --gradY: 100%;
+  }
+
+  60% {
+    --gradX: 50%;
+    --gradY: 100%;
+  }
+
+  80% {
+    --gradX: 0%;
+    --gradY: 50%;
+  }
+
+  100% {
+    --gradX: 50%;
+    --gradY: 0%;
+  }
 }
