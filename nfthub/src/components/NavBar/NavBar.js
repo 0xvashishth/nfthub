@@ -103,7 +103,7 @@ const NavBar = (props) => {
             </li>
           </ul>
           <ul className="navbar-nav">
-            <li className="nav-item">
+            <li className="nav-item border-1">
               <select
                 className="form-select me-sm-2"
                 id="chainSelection"
