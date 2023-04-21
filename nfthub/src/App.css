@@ -1,5 +1,5 @@
 html {
-  background: url('../public/assets/background-sober.jpg') no-repeat center center fixed;
+  background: url('../public/assets/gradient-4.png') no-repeat center center fixed;
   /* background:url('../public/assets/giphy.gif') no-repeat center center fixed; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -14,6 +14,10 @@ html {
 
 .form-label {
   color: white;
+}
+
+.bg-gradient {
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .App {

@@ -26,3 +26,4 @@ contract PirateToken is ERC20, AccessControl {
         _grantRole(MINTER_ROLE, to);
     }
 }
+
