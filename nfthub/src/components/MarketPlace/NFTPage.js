@@ -216,7 +216,7 @@ export default function NFTPage() {
         </div>
         <div className="col-2">
           <button
-            className="btn btn-outline-warning"
+            className="btn btn-warning"
             onClick={verifyOwner}
           >
             Verify Ownership
@@ -229,7 +229,7 @@ export default function NFTPage() {
                 <div className="mb-4 mt-1">
                   <h4>OR</h4>
                 </div>
-                <button className='btn btn-outline-warning' onClick={() => setScan(true)}>Scan Your QR</button>
+                <button className='btn btn-primary' onClick={() => setScan(true)}>Scan Your QR</button>
               </div>
             </div>
           </>
@@ -249,7 +249,7 @@ export default function NFTPage() {
               }}
               className='w-25 h-20 mx-auto'
             />
-            <center><button className='btn btn-outline-danger w-25' onClick={() => setScan(false)}>Cancel</button></center>
+            <center><button className='btn btn-danger w-25' onClick={() => setScan(false)}>Cancel</button></center>
           </>
         }
       </div>
