@@ -41,7 +41,7 @@ export default function NftIndexer() {
             <a href={tokenData.media[0].gateway} target="_blank" rel="noreferrer">
               <img
                 src={tokenData.media[0].thumbnail}
-                className="h-2 mt-3"
+                className="h-2 mt-3 b-rounded"
                 alt={tokenData.media[0].gateway}
               />
             </a>

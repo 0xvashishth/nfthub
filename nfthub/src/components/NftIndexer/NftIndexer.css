@@ -27,7 +27,7 @@ div.indexer-form {
     border: #2d3436 1px solid;
     background-color: #c8c8c880;
     backdrop-filter: blur(20px);
-    border-radius: 7px;
+    border-radius: 12px;
     /* margin-top: 5px; */
     /* margin-bottom: 5px; */
     margin: 10px 5px;
@@ -49,6 +49,10 @@ div.indexer-form {
 
 .tca {
     color: #00fffa
+}
+
+.b-rounded {
+    border-radius: 5px;
 }
 
 input {
