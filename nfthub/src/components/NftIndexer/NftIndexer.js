@@ -37,28 +37,30 @@ export default function NftIndexer() {
       var tokenaddr = `https://blockscan.com/address/${tokenData.contract.address}`;
       nftArray[i] = (
         <div className="h-100 text-center" key={tokenData.tokenId}>
-          <div className="card">
+          <div className="crd bg-blurr">
             <a href={tokenData.media[0].gateway} target="_blank" rel="noreferrer">
               <img
                 src={tokenData.media[0].thumbnail}
-                className="h-2"
+                className="h-2 mt-3"
                 alt={tokenData.media[0].gateway}
               />
             </a>
-            <div className="card-body">
+            <div className="card-body my-2">
               <h5 className="card-title">{tokenData.title}</h5>
-              <p className="card-text">{tokenData.description}</p>
+              <p className="card-text p-1">{tokenData.description}</p>
             </div>
-            <ul className="list-group list-group-flush">
+            <ul className="mx-auto p-0">
               <li className="list-group-item">
                 {tokenData.rawMetadata.external_link ? (
-                  <a href={tokenData.rawMetadata.external_link} target="_blank" rel="noreferrer">
+                  <a className='tca' href={tokenData.rawMetadata.external_link} target="_blank" rel="noreferrer">
                     External Link
                   </a>
                 ) : (
-                  "No Link"
+                  ""
                 )}
               </li>
+              <hr />
+
               <li className="list-group-item">
                 Token Type{" "}
                 <span className="badge bg-light">{tokenData.tokenType}</span>
@@ -73,13 +75,13 @@ export default function NftIndexer() {
                 );
               })}
               <li className="list-group-item">
-                <a href={tokenaddr} target="_blank" rel="noreferrer">{tokenData.contract.name}</a>
+                <a href={tokenaddr} target="_blank" rel="noreferrer" className='tca'>{tokenData.contract.name}</a>
               </li>
               <li className="list-group-item">
                 Block No {" "} <span className="badge bg-light">{tokenData.contract.deployedBlockNumber}</span>
               </li>
             </ul>
-            <div className="card-footer text-muted">
+            <div className="card-footer text-muted mb-2">
               <small>
                 Updated Time:{" "}
                 {new Date(Date.parse(tokenData.timeLastUpdated)).toDateString()}
@@ -136,7 +138,7 @@ export default function NftIndexer() {
       </div>
       {loader}
       <div className="d-flex justify-content-center pt-3">{nftnftcount}</div>
-      <div className="row mx-auto container row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-2">
+      <div className="row mx-auto container row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-2 mb-5">
         {nftdata}
       </div>
     </>
