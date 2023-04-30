@@ -64,11 +64,12 @@ export default function NFTPage() {
     console.log("Checking ownership of : ", addressForAuthority);
     var addrToCheck = addressForAuthority
     if (flag) {
-      addr = addr.slice(0, -6);
+      addr = addr.slice(0, -9);
       addr = addr.slice(9);
       addrToCheck = addr
       console.log(addr)
     }
+    console.log("Here we come: ", addrToCheck )
     if (!addrToCheck) {
       toast.error("Invalid Wallet Address", {
         id: toastId,
