@@ -168,11 +168,11 @@ const Wallet = () => {
               >
                 <option defaultValue>--Select Token---</option>
                 <option value="prt">Pirate Token</option>
-                <option value="mumatic" disabled>
+                {/* <option value="mumatic" disabled>
                   Mumbai Matic
                 </option>
                 <option value="mmatic" disabled>Mainnet Matic</option>
-                <option value="geth" disabled>Goerli Ethereum</option>
+                <option value="geth" disabled>Goerli Ethereum</option> */}
                 <option value="meth">Mainnet Ethereum</option>
               </select>
             </div>
