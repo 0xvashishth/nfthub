@@ -61,15 +61,18 @@ export default function NFTPage() {
 
   async function verifyOwner(addr, flag) {
     const toastId = toast.loading("Checking Ownership... 🤓");
-    console.log("Checking ownership of : ", addressForAuthority);
+    console.log("Checking ownership of : ", addr);
     var addrToCheck = addressForAuthority
     if (flag) {
-      addr = addr.slice(0, -9);
+      // addr = addr.slice(0, -6);
+      var indexA = addr.indexOf('@')
+      if (indexA != -1)
+        addr = addr.slice(0, indexA);
       addr = addr.slice(9);
       addrToCheck = addr
-      console.log(addr)
+      // console.log("in slicing: ", addr)
     }
-    console.log("Here we come: ", addrToCheck )
+    console.log("Here we come: ", addrToCheck)
     if (!addrToCheck) {
       toast.error("Invalid Wallet Address", {
         id: toastId,
@@ -87,17 +90,19 @@ export default function NFTPage() {
               id: toastId,
             });
           } else {
-            toast.success("No, Given Wallet Address Is Not The Owner..🙂", {
+            toast.error("No, Given Wallet Address Is Not The Owner..🙂", {
               id: toastId,
             });
           }
         })
         .catch((e) => {
+          console.log(e);
           toast.error("Something went wrong..😪", {
             id: toastId,
           });
         });
     } catch (e) {
+      console.log(e);
       toast.error("Something went wrong..😪", {
         id: toastId,
       });
@@ -108,7 +113,7 @@ export default function NFTPage() {
     if (data) {
       setScan(false);
       verifyOwner(data?.text, true);
-      console.log(data.text)
+      console.log("in handle scan: ", data.text)
     } else {
       toast.error("Something went wrong...🤐");
     }
@@ -241,12 +246,10 @@ export default function NFTPage() {
                 if (!!result) {
                   handleScan(result);
                 }
-
                 // if (!!error) {
                 //   toast.error('Error while scanning QR code...')
                 //   console.info("ERROR", error);
                 // }
-
               }}
               className='w-25 h-20 mx-auto'
             />
