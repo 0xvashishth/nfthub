@@ -6,7 +6,7 @@ import { tokenConfig } from "./chainCheck";
 
 export async function transact(contract, recieverAddress, transferAmount, toastId, e) {
   try {
-    let txt = await contract.transfer(recieverAddress, transferAmount, {gasLimit: 50000000});
+    let txt = await contract.transfer(recieverAddress, transferAmount, {gasLimit: 4712388});
     console.log(txt);
     var explorerUrl = tokenConfig[e].config.blockExplorerUrls[0]
     var linkHash = explorerUrl + "tx/" + txt.hash;
