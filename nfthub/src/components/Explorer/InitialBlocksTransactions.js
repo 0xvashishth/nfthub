@@ -62,17 +62,17 @@ function InitialBlocksTransactions() {
           transaction_details[i] = <tr className="table-active">
             <td>
               <p>
-                Hash <a href="#link">{(result.hash).slice(0, 8)}</a>
+                Hash <a className='tca' href="#link">{(result.hash).slice(0, 8)}</a>
                 <br />
-                <small className="form-text">{time}</small>
+                <small className="form-text tcb">{time}</small>
               </p>
             </td>
             <td>
-              <small><a href="#link">From: {showStr(transactions[i].from)}</a></small>
+              <small><a className='tca' href="#link">From: {showStr(transactions[i].from)}</a></small>
               <br />
-              <small><a href="#link">To: {showStr(transactions[i].to)}</a></small>
+              <small><a className='tca' href="#link">To: {showStr(transactions[i].to)}</a></small>
               <br />
-              <small className="form-text">Transaction value: {txValue / 1000000000} Gwei</small>
+              <small className="form-text tcw">Transaction value: {txValue / 1000000000} Gwei</small>
             </td>
           </tr>
         }
@@ -95,17 +95,17 @@ function InitialBlocksTransactions() {
         block_details[i] = <tr className={`table-active ${darkMode ? "" : "hover-3"}`}>
           <td>
             <p>
-              Block <a href={blockLink}>{result.number}</a>
+              Block <a className='tca' href={blockLink}>{result.number}</a>
               <br />
-              <small className="form-text">{time}</small>
+              <small className="form-text tcb">{time}</small>
             </p>
           </td>
           <td>
-            <small><a href="#link">{showStr(result.miner)}</a></small>
+            <small><a className='tca' href="#link">{showStr(result.miner)}</a></small>
             <br />
-            <small className="form-text ">Gas Used 🔥: {strgas / 1000000000} Gwei</small>
+            <small className="form-text tcw">Gas Used 🔥: {strgas / 1000000000} Gwei</small>
             <br />
-            <small className="form-text ">Total Transactions: {result.transactions.length}</small>
+            <small className="form-text tcw">Total Transactions: {result.transactions.length}</small>
           </td>
         </tr>
         // setBlockInfo(result);
@@ -156,11 +156,11 @@ function InitialBlocksTransactions() {
             Latest Block Number: {blockNumber}
           </div>
           <div className="col-sm-2">
-            <button className="btn btn-outline-info" onClick={getBlockNumber}>Refresh</button> &nbsp; &nbsp; {btnLoader}
+            <button className="btn btn-danger" onClick={getBlockNumber}>Refresh</button> &nbsp; &nbsp; {btnLoader}
           </div>
         </div>
         <div className="row p-lg-0 p-md-5 p-sm-3 p-2 mx-auto w-100 justify-content-around mt-4">
-          <div className={`col-lg-5 col-12 border border-light rounded ${darkMode ? "" : "lightThemeBlockExplorer"}`}>
+          <div className={`col-lg-5 col-12 border border-light rounded ${darkMode ? "" : "lightThemeBlockExplorer"} bg-blurrr`}>
             <table className={`table ${darkMode ? "table-hover" : ""}`}>
               <thead>
                 <tr>
@@ -173,7 +173,7 @@ function InitialBlocksTransactions() {
               </tbody>
             </table>
           </div>
-          <div className={`col-lg-5 col-12 my-lg-0 my-5 border border-light rounded ${darkMode ? "" : "lightThemeBlockExplorer"}`}>
+          <div className={`col-lg-5 col-12 my-lg-0 my-5 border border-light rounded ${darkMode ? "" : "lightThemeBlockExplorer"} bg-blurrr`}>
             <table className={`table ${darkMode ? "table-hover" : ""}`}>
               <thead>
                 <tr>
