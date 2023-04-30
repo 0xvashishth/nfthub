@@ -205,6 +205,7 @@ export default function NFTPage() {
           display: "flex",
           justifyContent: "center",
           borderRadius: "10px",
+          width: "70%",
         }}
       >
         {displayData}
