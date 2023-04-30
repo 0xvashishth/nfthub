@@ -136,7 +136,7 @@ export default function NftIndexer() {
       </div>
       {loader}
       <div className="d-flex justify-content-center pt-3">{nftnftcount}</div>
-      <div className="row mx-auto container row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-sm-2">
+      <div className="row mx-auto container row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-2">
         {nftdata}
       </div>
     </>
