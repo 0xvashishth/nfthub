@@ -131,15 +131,15 @@ function FindBlock() {
         </div>
         <div className='col-sm-8 d-flex'>
           <input className="form-control" id="hashInput" placeholder='Enter Hash/Block Number' />&nbsp;&nbsp;
-          <button className='btn btn-outline-light' onClick={ViewBlock}>View</button>
+          <button className='btn btn-primary' onClick={ViewBlock}>View</button>
         </div>
       </div>
       <div className="mt-4">
         <div className="row m-2">
           <div className="col-sm-3">Block Number: {blockNumber}</div>
         </div>
-        <div className="row m-3">
-          <div className="border border-light rounded">
+        <div className="row m-3 col-10">
+          <div className="border border-light rounded bg-blurrr">
             <table className="table table-hover">
               <tbody>
                 <tr className="align-left">
@@ -160,7 +160,7 @@ function FindBlock() {
                 </tr>
                 <tr>
                   <td scope="col">Parent Hash</td>
-                  <td scope="col"><a href="#parentBlock" onClick={parentBlock}>{blockInfo.parentHash}</a></td>
+                  <td scope="col"><a className='tca' href="#parentBlock" onClick={parentBlock}>{blockInfo.parentHash}</a></td>
                 </tr>
                 <tr>
                   <td scope="col">Block Miner</td>
@@ -184,7 +184,7 @@ function FindBlock() {
                 </tr>
                 <tr>
                   <td scope="col">Total Transactions</td>
-                  <td scope="col">{blockInfo.transactions.length} &nbsp;&nbsp; <button className="btn btn-outline-light btn-sm">View All Transaction</button> </td>
+                  <td scope="col">{blockInfo.transactions.length} &nbsp;&nbsp; <button className="btn btn-outline-light btn-sm tcw">View All Transaction</button> </td>
                 </tr>
               </tbody>
             </table>

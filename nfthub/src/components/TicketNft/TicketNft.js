@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { uploadFileToIPFS, uploadJSONToIPFS } from "../../configuration/pinata";
-// import { useLocation } from "react-router";
-// import NFTHUB from "../../contracts/NFTHUB.json";
 import NH from "../../contracts/NH.json";
-// import { Utils } from "alchemy-sdk";
 import { useGlobalState } from "../../configuration/settings";
 import toast, { Toaster } from "react-hot-toast";
+import './TicketNft.css';
+// import NFTHUB from "../../contracts/NFTHUB.json";
+// import { useLocation } from "react-router";
+// import { Utils } from "alchemy-sdk";
 
 export default function TicketNft() {
 
@@ -74,7 +75,7 @@ export default function TicketNft() {
     const toastId = toast.loading("Started Listing Ticket.. 🤩");
     e.preventDefault();
     var { name, description, price, to, isSoulBound, iscurrentListed } = formParams;
-    if(!price || !name || !description){
+    if (!price || !name || !description) {
       toast.error("Please Fill All The Required Fields.. ⚒",
         {
           id: toastId,
@@ -83,45 +84,45 @@ export default function TicketNft() {
       return;
     }
     var toArray = [];
-    if(to === ""){
+    if (to === "") {
       toArray[0] = currentAccountAddress;
-    }else{
+    } else {
       to = to.replace(/\s/g, "");
       toArray = to.split(",");
       toArray.unshift(currentAccountAddress)
       console.log(toArray)
-      if(toArray.length < 1){
+      if (toArray.length < 1) {
         toast.error("Please Provide Address Correctly or refresh your browser.. ⚒",
+          {
+            id: toastId,
+          }
+        );
+        return;
+      }
+    }
+    if (iscurrentListed) {
+      toast.error("You can't list a Ticket.. ⚒",
         {
           id: toastId,
         }
       );
       return;
-      }
     }
-    if (iscurrentListed) {
-        toast.error("You can't list a Ticket.. ⚒",
-          {
-            id: toastId,
-          }
-        );
-        return;
-    }
-    if(!isSoulBound){
+    if (!isSoulBound) {
       toast.error("You can't list a Ticket without soulbound behaviour.. ⚒",
-          {
-            id: toastId,
-          }
-        );
-        return;
+        {
+          id: toastId,
+        }
+      );
+      return;
     }
-    if(price != "0.001"){
+    if (price != "0.001") {
       toast.error("You have explicitly did something wrong.. ⚒",
-          {
-            id: toastId,
-          }
-        );
-        return;
+        {
+          id: toastId,
+        }
+      );
+      return;
     }
     toast.loading("Uploading Your Ticket's Metadata To IPFS..😏", { id: toastId, });
     // let weiAmount = Utils.parseEther(price);
@@ -138,19 +139,19 @@ export default function TicketNft() {
           id: toastId,
         }
       );
-      
 
-    //Pull the deployed contract instance
-    let contract = new ethers.Contract(NH.address, NH.abi, signer);
-    //massage the params to be sent to the create NFT request
-    const price = ethers.utils.parseUnits(formParams.price, "ether");
-    console.log(price)
-    toast.loading("Preparing Data From BlockChain.. 🎉",
-      {
-        id: toastId,
-      }
-    );
-    let listingPrice = await contract.getListPrice();
+
+      //Pull the deployed contract instance
+      let contract = new ethers.Contract(NH.address, NH.abi, signer);
+      //massage the params to be sent to the create NFT request
+      const price = ethers.utils.parseUnits(formParams.price, "ether");
+      console.log(price)
+      toast.loading("Preparing Data From BlockChain.. 🎉",
+        {
+          id: toastId,
+        }
+      );
+      let listingPrice = await contract.getListPrice();
 
       listingPrice = listingPrice.toString();
       //actually create the NFT
@@ -185,12 +186,12 @@ export default function TicketNft() {
     <div>
       <div className="container items-center p-3 text-center mx-auto">
         <h3 className="rounded fs-2">Create Tickets</h3>
-        <div id="eventRecipient" className="form-text">
-            Tickets will not be sold after the minting.. as these tickets will be soulbound 
-            NFTs
+        <div id="eventRecipient" className="form-text tcw">
+          Tickets will not be sold after the minting.. as these tickets will be soulbound
+          NFTs
         </div>
       </div>
-      <form className="container mb-4">
+      <form className="container mb-4 border border-black p-3 bg-blurrr divwidth">
         <div className="mb-3">
           <label htmlFor="eventName" className="form-label">
             Event Name
@@ -219,12 +220,12 @@ export default function TicketNft() {
             id="eventDescription"
             aria-describedby="eventDescription"
             value={formParams.description}
-                onChange={(e) =>
-                  updateFormParams({
-                    ...formParams,
-                    description: e.target.value,
-                  })
-                }
+            onChange={(e) =>
+              updateFormParams({
+                ...formParams,
+                description: e.target.value,
+              })
+            }
           />
           <div id="eventDescription" className="form-text">
             Enter complete event description
@@ -242,23 +243,23 @@ export default function TicketNft() {
             onChange={(e) =>
               updateFormParams({ ...formParams, to: e.target.value })
             }
-              value={formParams.to}
+            value={formParams.to}
           />
           <div id="eventRecipient" className="form-text">
             Enter all recipients ethereum addresses that are gonna attend the event (Saperated by comma...)
           </div>
         </div>
         <div className="mb-3">
-                <label className="form-label " htmlFor="image">
-                  Upload Image
-                </label>
-                <input
-                  className="form-control"
-                  type={"file"}
-                  onChange={OnChangeFile}
-                ></input>
-              </div>
-        <button type="submit" onClick={listNFT} className="btn form-control btn-outline-warning">
+          <label className="form-label " htmlFor="image">
+            Upload Image
+          </label>
+          <input
+            className="form-control"
+            type={"file"}
+            onChange={OnChangeFile}
+          ></input>
+        </div>
+        <button type="submit" onClick={listNFT} className="mt-4 btn form-control btn-warning">
           Submit
         </button>
       </form>
