@@ -5,7 +5,7 @@ import './MintNft.css'
 
 const MintNft = (props) => {
   return (
-    <div className="m-auto mt-5 mb-2 MintDiv">
+    <div className="mx-auto mt-5 mb-2">
       <div className="border p-2 border-white rounded">
         <div className="">
           <form>

@@ -191,7 +191,7 @@ export default function SellNFT() {
       <div className="mt-3 middle">
         <h3 className="p-3 rounded">Mint NFT</h3>
       </div>
-      <div className={`border mt-3 border-white rounded m-auto MintDiv mb-4 form`}>
+      <div className={`border mt-3 border-white rounded m-auto mb-4 form width-a`}>
         <form className={`p-3 ${darkMode ? "" : "lightThemeSellNft"} bg-blurrr`}>
           <fieldset>
             {/* <legend className="p-1">Mint Your NFT</legend>
@@ -249,7 +249,7 @@ export default function SellNFT() {
                 Price (in ETH)
               </label>
               <input
-                className={`form-control ${darkMode ? "" : "lightThemeInput"}`}
+                className={`form-control ${darkMode ? "" : ""}`}
                 type="number"
                 placeholder="Min 0.01 ETH"
                 step="0.01"
