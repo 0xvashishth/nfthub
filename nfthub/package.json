@@ -31,7 +31,8 @@
     "web-vitals": "^2.1.4",
     "web3": "^1.8.2",
     "web3-utils": "^1.8.2",
-    "ws": "^8.13.0"
+    "ws": "^8.13.0",
+    "buffer": "^6.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
