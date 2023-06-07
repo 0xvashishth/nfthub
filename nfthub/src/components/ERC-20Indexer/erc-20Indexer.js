@@ -1,7 +1,7 @@
 import "./erc-20Indexer.css";
 import { Utils } from "alchemy-sdk";
 import { useEffect, useState } from "react";
-import {CenterLoader as Loader} from "../Loader/LoaderDNA";
+import { CenterLoader as Loader } from "../Loader/LoaderDNA";
 import { useGlobalState } from "../../configuration/settings";
 import { trunc } from "../../configuration/misc";
 
@@ -14,7 +14,7 @@ export default function Erc20Indexer() {
   const [erc20transferscount, seterc20transferscount] = useState("");
   const [loader, setloader] = useState("");
 
-  useEffect(()=>{
+  useEffect(() => {
     setUserAddress("");
     seterc20data("");
     seterc20transfers("");
@@ -25,7 +25,7 @@ export default function Erc20Indexer() {
   async function getTokenBalance() {
     seterc20transfers("");
     seterc20transferscount("");
-    setloader(<Loader/>);
+    setloader(<Loader />);
     seterc20data("");
 
     // just transfer data of erc-20
@@ -52,10 +52,11 @@ export default function Erc20Indexer() {
       );
       erc20Array[i] = (
         <div className="mt-5 justify-content-around container" key={i}>
-          <div className="alert alert-dismissible alert-info">
+          <div className="alert alert-dismissible bg-blurrr">
             <div className="row">
               <div className="col-3">
-                <img height="50px" alt="#img" src={tokenData.logo} />
+                {tokenData.logo ? (<img height="50px" alt="#img" src={tokenData.logo} />) : <img height="50px" alt="#img" src="https://user-images.githubusercontent.com/78534043/235341800-961cf42d-0783-4be6-9e42-496514e990ac.png" />}
+
               </div>
               <div className="col-9">
                 <div>

@@ -11,7 +11,7 @@
 
 Welcome to NFTHUB🚀 - Your all-in-one web3 app for NFT minting, buying, and exploring the blockchain universe 🔗!
 
-With NFTHUB, you hvae the power to create and collet unique digital assets in the form of NFT 🎨🖼.  
+With NFTHUB, you have the power to create and collet unique digital assets in the form of NFT 🎨🖼.  
 
 Minting NFTs on NFTHUB is a breeze 😌🎉. Our intuitive interface allows you to easily upload your digital creations, customize type of NFT, and other settings, and mint your NFTs with just a few clicks💡✨. Once minted, your NFTs are showcased in our vibrant marketplace🛍️, where collectors from around the world can discover and purchase your creations.
 

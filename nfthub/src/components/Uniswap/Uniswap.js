@@ -36,7 +36,6 @@ function Uniswap() {
     <div className="container middle justify-content-center pt-5">
       <div className="Uniswap border border-light rounded">
         <SwapWidget
-          theme={darkTheme}
           width="100%"
           provider={account.provider}
           JsonRpcEndpoint={jsonRpcEndpoint} />
